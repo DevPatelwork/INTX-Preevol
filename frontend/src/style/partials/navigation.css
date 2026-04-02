@@ -1,0 +1,145 @@
+.navigation {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0;
+  z-index: 1000;
+  height: 100vh !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: var(--surface_container_low) !important;
+  box-shadow: none;
+}
+
+.navigation .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  margin: 16px 14px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logoIcon {
+  height: 36px;
+  width: 36px;
+  border-radius: 10px;
+}
+
+.logoBrandWrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logoBrand {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1652be;
+}
+
+.logoSubBrand {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6d7a90;
+}
+
+.navigationMenu {
+  width: 100% !important;
+  border-inline-end: none !important;
+  background: transparent !important;
+  padding: 6px 10px 80px !important;
+}
+
+.navigationMenu .ant-menu-item {
+  height: 42px !important;
+  line-height: 42px !important;
+  border-radius: var(--radius-md);
+  margin-block: 5px !important;
+  font-weight: 600;
+  color: var(--on_surface_variant);
+  background: transparent !important;
+  position: relative;
+  padding-left: 22px !important;
+}
+
+.navigationMenu .ant-menu-item .ant-menu-title-content {
+  font-size: 14px;
+}
+
+.navigationMenu .ant-menu-item .anticon {
+  font-size: 16px;
+}
+
+.navigationMenu .ant-menu-item-selected {
+  color: var(--on_primary_fixed_variant) !important;
+  background: var(--surface_bright) !important;
+}
+
+.navigationMenu .ant-menu-item-selected::after {
+  display: none !important;
+}
+
+.navigationMenu .ant-menu-item-selected::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 7px;
+  bottom: 7px;
+  width: 6px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+}
+
+.navigationMenu .ant-menu-item-active {
+  color: var(--primary) !important;
+  background: var(--surface_container) !important;
+}
+
+.sidebar-wraper {
+  background: transparent;
+  display: block;
+}
+
+.mobile-sidebar-wraper {
+  display: none;
+}
+
+.mobile-sidebar-wraper .ant-drawer-body {
+  padding: 12px 0 !important;
+}
+
+.mobile-sidebar-btn {
+  margin-left: 8px;
+  margin-top: 8px;
+  height: 42px;
+  width: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(24, 42, 71, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar-wraper {
+    display: none;
+  }
+
+  .navigation {
+    position: relative !important;
+    margin: 0;
+    width: 100% !important;
+    height: 100% !important;
+    box-shadow: none;
+  }
+
+  .mobile-sidebar-wraper {
+    display: block;
+  }
+}

@@ -1,0 +1,15 @@
+export const fields = {
+  company: { type: 'async', entity: 'company', displayLabels: ['name'], outputValue: '_id', required: true, disableForTable: true },
+  companyName: { type: 'string', label: 'company', dataIndex: ['company', 'name'], disableForForm: true },
+  goods: { type: 'async', entity: 'goods', displayLabels: ['goodsName'], outputValue: '_id', required: true, disableForTable: true },
+  goodsNameRef: { type: 'string', label: 'goods', dataIndex: ['goods', 'goodsName'], disableForForm: true },
+  party: { type: 'async', entity: 'client', displayLabels: ['name'], outputValue: '_id', disableForTable: true },
+  partyNameRef: { type: 'string', label: 'party', dataIndex: ['party', 'name'], disableForForm: true },
+  invDate: { type: 'date', required: true },
+  inventoryType: { type: 'string' },
+  uom: { type: 'string' },
+  qty: { type: 'number', required: true },
+  pricePerUnit: { type: 'number' },
+  totalPrice: { type: 'number' },
+  remarks: { type: 'string' },
+};

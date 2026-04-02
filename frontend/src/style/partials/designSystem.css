@@ -1,0 +1,47 @@
+/* The Architectural Ledger: Design System Tokens and Global Rules */
+
+:root {
+  --surface: #f7f9fb;
+  --surface_container_low: #f2f4f6;
+  --surface_container: #eceef0;
+  --surface_container_highest: #e0e3e5;
+  --surface_container_lowest: #ffffff;
+  --surface_bright: #f7f9fb;
+  --surface_dim: #2d3133;
+
+  --on_surface: #191c1e;
+  --on_surface_variant: #434655;
+  --inverse_surface: #2d3133;
+  --inverse_on_surface: #eff1f3;
+
+  --primary: #004ac6;
+  --primary_container: #2563eb;
+  --on_primary: #ffffff;
+  --inverse_primary: #b4c5ff;
+  --surface_tint: #0053db;
+
+  --secondary_container: #dbe6ff;
+  --tertiary_container: #ffd8cf;
+  --on_primary_fixed_variant: #003ea8;
+
+  --outline_variant: #c3c6d7;
+  --ghost-border: rgba(195, 198, 215, 0.15);
+
+  --space-20: 7.1rem;
+  --space-24: 8.5rem;
+
+  --radius-md: 12px;
+  --radius-full: 9999px;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--ghost-border);
+}
+
+.night-mode {
+  background: var(--inverse_surface);
+  color: var(--inverse_on_surface);
+}

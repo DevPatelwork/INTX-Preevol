@@ -1,0 +1,15 @@
+export const fields = {
+  proposalNumber: { type: 'string', required: true },
+  company: { type: 'async', entity: 'company', displayLabels: ['name'], outputValue: '_id', required: true, disableForTable: true },
+  companyName: { type: 'string', label: 'company', dataIndex: ['company', 'name'], disableForForm: true },
+  party: { type: 'async', entity: 'client', displayLabels: ['name'], outputValue: '_id', disableForTable: true },
+  partyName: { type: 'string', label: 'party', dataIndex: ['party', 'name'], disableForForm: true },
+  product: { type: 'async', entity: 'product', displayLabels: ['name'], outputValue: '_id', disableForTable: true },
+  productName: { type: 'string', label: 'product', dataIndex: ['product', 'name'], disableForForm: true },
+  proposalDate: { type: 'date' },
+  pumpType: { type: 'string' },
+  pumpModel: { type: 'string' },
+  price: { type: 'number' },
+  discount: { type: 'number' },
+  application: { type: 'textarea' },
+};

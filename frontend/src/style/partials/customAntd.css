@@ -1,0 +1,203 @@
+.ant-layout {
+  background: var(--surface) !important;
+}
+
+.site-layout .site-layout-background {
+  background: var(--surface);
+}
+
+[data-theme='dark'] .site-layout .site-layout-background {
+  background: #141414;
+}
+
+.headerIcon .ant-dropdown-menu {
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  padding: 8px;
+  box-shadow: 0 20px 38px rgba(25, 28, 30, 0.06);
+  border: 1px solid var(--ghost-border);
+}
+
+.headerIcon .ant-dropdown-menu-item:hover,
+.headerIcon .ant-dropdown-menu-item.ant-dropdown-menu-item-active {
+  background: rgba(23, 96, 200, 0.08);
+}
+
+.login-form button[type='submit'] {
+  margin-bottom: 20px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.ant-table-wrapper .ant-table {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.ant-table-thead > tr > th {
+  font-weight: 700;
+  background: var(--surface) !important;
+  color: var(--on_surface_variant) !important;
+  border-bottom: none !important;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.ant-table-tbody > tr:nth-child(odd) > td {
+  background: var(--surface) !important;
+}
+
+.ant-table-tbody > tr:nth-child(even) > td {
+  background: var(--surface_container_low) !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: none !important;
+  padding-top: 1.4rem !important;
+  padding-bottom: 1.4rem !important;
+}
+
+.ant-typography strong {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700 !important;
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-select-selector,
+.ant-picker,
+.ant-btn {
+  border-radius: var(--radius-md) !important;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #004ac6, #2563eb) !important;
+  border-color: transparent !important;
+  box-shadow: 0 10px 24px rgba(25, 28, 30, 0.06);
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background: linear-gradient(135deg, #003ea8, #1f58da) !important;
+}
+
+.ant-btn-default:hover,
+.ant-btn-default:focus {
+  border-color: rgba(195, 198, 215, 0.15) !important;
+  color: #004ac6 !important;
+  background: var(--surface_container) !important;
+}
+
+.ant-btn-default {
+  border: 1px solid rgba(195, 198, 215, 0.15) !important;
+  background: transparent !important;
+  color: #004ac6 !important;
+}
+
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused,
+.ant-input-number:focus,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused {
+  border-color: #004ac6 !important;
+  box-shadow: 0 0 0 3px rgba(0, 83, 219, 0.05) !important;
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-select-selector,
+.ant-picker {
+  background: var(--surface_container_highest) !important;
+  border: 1px solid rgba(195, 198, 215, 0.15) !important;
+}
+
+.ant-menu-inline {
+  padding-bottom: 70px;
+}
+
+.tabContent .ant-tabs-right > .ant-tabs-content-holder,
+.tabContent .ant-tabs-right > div > .ant-tabs-content-holder {
+  border-right: none;
+}
+
+.tabContent .ant-tabs .ant-tabs-tab + .ant-tabs-tab {
+  margin: 0;
+}
+
+.ant-select-show-search:where(.css-dev-only-do-not-override-2q8sxy).ant-select:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  cursor: pointer;
+}
+
+.ant-menu-item {
+  height: 38px !important;
+}
+
+.ant-card {
+  border-radius: var(--radius-md) !important;
+  border-color: var(--ghost-border) !important;
+  box-shadow: var(--shadow-card);
+  background: var(--surface_container_lowest) !important;
+}
+
+.MuiFormControl-root .MuiOutlinedInput-root {
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.MuiFormControl-root .MuiOutlinedInput-root fieldset {
+  border-color: rgba(24, 42, 71, 0.22);
+}
+
+.MuiFormControl-root .MuiOutlinedInput-root:hover fieldset {
+  border-color: rgba(23, 96, 200, 0.5);
+}
+
+.MuiFormControl-root .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: rgba(23, 96, 200, 0.65);
+  box-shadow: 0 0 0 3px rgba(23, 96, 200, 0.12);
+}
+
+.MuiSwitch-switchBase.Mui-checked {
+  color: var(--accent);
+}
+
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  background-color: rgba(23, 96, 200, 0.45);
+}
+
+@media (max-width: 768px) {
+  .tabContent .ant-tabs-right > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane {
+    padding-right: 0;
+    margin-top: 30px;
+  }
+
+  .tabContent .ant-tabs {
+    display: block;
+  }
+}

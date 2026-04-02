@@ -1,0 +1,74 @@
+import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
+import { selectAppSettings } from '@/redux/settings/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Layout } from 'antd';
+
+import { useAppContext } from '@/context/appContext';
+
+import Navigation from '@/apps/Navigation/NavigationContainer';
+
+import HeaderContent from '@/apps/Header/HeaderContainer';
+import PageLoader from '@/components/PageLoader';
+
+import { settingsAction } from '@/redux/settings/actions';
+
+import { selectSettings } from '@/redux/settings/selectors';
+
+import AppRouter from '@/router/AppRouter';
+
+import useResponsive from '@/hooks/useResponsive';
+
+import storePersist from '@/redux/storePersist';
+
+export default function ErpCrmApp() {
+  const { Content } = Layout;
+
+  // const { state: stateApp, appContextAction } = useAppContext();
+  // // const { app } = appContextAction;
+  // const { isNavMenuClose, currentApp } = stateApp;
+
+  const { isMobile } = useResponsive();
+
+  const dispatch = useDispatch();
+
+  useLayoutEffect(() => {
+    dispatch(settingsAction.list({ entity: 'setting' }));
+  }, []);
+
+  // const appSettings = useSelector(selectAppSettings);
+
+  const { isSuccess: settingIsloaded } = useSelector(selectSettings);
+
+  // useEffect(() => {
+  //   const { loadDefaultLang } = storePersist.get('firstVisit');
+  //   if (appSettings.app_language && !loadDefaultLang) {
+  //     window.localStorage.setItem('firstVisit', JSON.stringify({ loadDefaultLang: true }));
+  //   }
+  // }, [appSettings]);
+
+  if (settingIsloaded)
+    return (
+      <Layout hasSider className="erp-shell">
+        <Navigation />
+
+        {isMobile ? (
+          <Layout className="erp-main-layout erp-main-layout--mobile">
+            <HeaderContent />
+            <Content className="erp-main-content erp-main-content--mobile">
+              <AppRouter />
+            </Content>
+          </Layout>
+        ) : (
+          <Layout className="erp-main-layout">
+            <HeaderContent />
+            <Content className="erp-main-content">
+              <AppRouter />
+            </Content>
+          </Layout>
+        )}
+      </Layout>
+    );
+  else return <PageLoader />;
+}

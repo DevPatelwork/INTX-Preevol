@@ -1,0 +1,583 @@
+.hiddenLabel {
+  opacity: 0;
+  color: #fff;
+}
+
+.centerAbsolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32px;
+  height: 38px;
+  margin-left: -16px;
+  margin-top: -19px;
+}
+
+.whiteBox {
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  min-height: 100px;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.shadow {
+  box-shadow: var(--shadow-soft);
+}
+
+.shadow:hover {
+  border-color: rgba(23, 96, 200, 0.25);
+  box-shadow: 0 20px 44px rgba(17, 38, 70, 0.12);
+}
+
+.line {
+  border-top: 1px solid rgba(24, 42, 71, 0.1);
+  width: 100%;
+  margin: 8px auto;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.pad5 {
+  padding: 5px;
+}
+
+.pad10 {
+  padding: 10px;
+}
+
+.pad15 {
+  padding: 15px;
+}
+
+.pad20 {
+  padding: 20px;
+}
+
+.pad25 {
+  padding: 25px;
+}
+
+.pad30 {
+  padding: 30px;
+}
+
+.pad33 {
+  padding: 35px;
+}
+
+.pad40 {
+  padding: 40px;
+}
+
+.mrg5 {
+  margin: 5px;
+}
+
+.mrg10 {
+  margin: 10px;
+}
+
+.mrg15 {
+  margin: 15px;
+}
+
+.mrg20 {
+  margin: 20px;
+}
+
+.mrg25 {
+  margin: 20px;
+}
+
+.mrg30 {
+  margin: 20px;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.center {
+  justify-content: center;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.space5 {
+  height: 5px;
+  width: 100%;
+  display: block;
+}
+
+.space10 {
+  height: 10px;
+  width: 100%;
+  display: block;
+}
+
+.space20 {
+  height: 20px;
+  width: 100%;
+  display: block;
+}
+
+.space30 {
+  height: 30px;
+  width: 100%;
+  display: block;
+}
+
+.space40 {
+  height: 40px;
+  width: 100%;
+  display: block;
+}
+
+.space50 {
+  height: 50px;
+  width: 100%;
+  display: block;
+}
+
+.space60 {
+  height: 60px;
+  width: 100%;
+  display: block;
+}
+
+.space70 {
+  height: 70px;
+  width: 100%;
+  display: block;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.layoutPadding {
+  position: relative;
+  padding: 38px 34px;
+}
+
+.dashboardSpacing {
+  padding: 20px 28px 30px;
+  margin: 0 auto;
+}
+
+.erp-panel-content {
+  margin: 16px auto;
+  max-width: 1140px;
+  min-height: 600px;
+}
+
+.dashboardV2 {
+  padding-bottom: 24px;
+}
+
+.dashboardCard {
+  background: #f4f6fa;
+  border: 1px solid #e4e8f1;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.summaryCard h3 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1;
+  color: #101828;
+}
+
+.summaryIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.summaryIcon.blue {
+  color: #245fcb;
+  background: #dce8ff;
+}
+
+.summaryIcon.orange {
+  color: #c25c14;
+  background: #ffe9dc;
+}
+
+.summaryIcon.slate {
+  color: #5a6478;
+  background: #e8ecf5;
+}
+
+.summaryHint {
+  font-size: 12px;
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.summaryHint.blue {
+  color: #245fcb;
+}
+
+.summaryHint.orange {
+  color: #c25c14;
+}
+
+.summaryHint.slate {
+  color: #5a6478;
+}
+
+.summaryTitle {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #6a7385;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.systemCard h4,
+.promoteCard h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+}
+
+.statusLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #646f83;
+}
+
+.statusLine strong {
+  color: #101828;
+  font-size: 12px;
+}
+
+.statusLine .textBlue {
+  color: #1d61d6;
+}
+
+.chartCard {
+  min-height: 320px;
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.chartHeader h3 {
+  margin: 0 0 4px;
+  font-size: 26px;
+}
+
+.chartHeader p {
+  margin: 0;
+  color: #6c778c;
+}
+
+.chartLegend {
+  display: flex;
+  gap: 16px;
+  color: #67738a;
+  font-size: 13px;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.legendDot.billed {
+  background: #2f66d3;
+}
+
+.legendDot.collected {
+  background: #9cb6eb;
+}
+
+.trendControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trendLineWrap {
+  margin-top: 20px;
+  position: relative;
+  border: 1px solid #e5eaf4;
+  border-radius: 14px;
+  padding: 10px 10px 0;
+  background: linear-gradient(180deg, #ffffff, #fbfdff);
+}
+
+.trendLineChart {
+  width: 100%;
+  height: 310px;
+  display: block;
+}
+
+.trendGridLine {
+  stroke: #e6ebf4;
+  stroke-width: 1;
+}
+
+.trendAxisText {
+  fill: #75829a;
+  font-size: 11px;
+}
+
+.trendLine {
+  fill: none;
+  stroke-width: 3;
+}
+
+.trendLine.billed {
+  stroke: #2f66d3;
+}
+
+.trendLine.collected {
+  stroke: #9cb6eb;
+}
+
+.trendPointerLine {
+  stroke: #6f7a8d;
+  stroke-dasharray: 3 3;
+  stroke-width: 1;
+}
+
+.trendPoint {
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.trendPoint.billed {
+  fill: #2f66d3;
+}
+
+.trendPoint.collected {
+  fill: #9cb6eb;
+}
+
+.trendTooltip {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  min-width: 190px;
+  border-radius: 10px;
+  border: 1px solid #dfe6f2;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(37, 63, 112, 0.12);
+  padding: 10px 12px;
+}
+
+.trendTooltipLabel {
+  font-size: 12px;
+  color: #5e6c85;
+  margin-bottom: 6px;
+}
+
+.trendTooltipValue {
+  font-size: 12px;
+  color: #2f3d55;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trendTooltipValue .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.trendTooltipValue .dot.billed {
+  background: #2f66d3;
+}
+
+.trendTooltipValue .dot.collected {
+  background: #9cb6eb;
+}
+
+.trendLoadingMask {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid #dfe6f2;
+  color: #51617c;
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.promoteCard {
+  margin-bottom: 16px;
+  background: linear-gradient(150deg, #3a72df, #1f55be);
+  color: #fff;
+}
+
+.promoteCard p {
+  color: rgba(255, 255, 255, 0.86);
+  margin-bottom: 16px;
+}
+
+.solidActionBtn.ant-btn {
+  border-radius: 10px;
+  border: none;
+  background: #fff !important;
+  color: #1f55be !important;
+  font-weight: 700;
+}
+
+.quickActionsCard h5 {
+  margin: 0 0 12px;
+  color: #667287;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.quickActionsGrid .ant-btn {
+  border-radius: 10px;
+  border: 1px solid #dce2ee;
+  color: #355288;
+  font-weight: 600;
+}
+
+.mrgTop16 {
+  margin-top: 16px;
+}
+
+.recentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.recentHeader h3 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.recentCard .ant-table-wrapper .ant-table {
+  background: transparent;
+}
+
+.recentCard .ant-table-thead > tr > th {
+  background: transparent;
+  color: #6f7a8d;
+  border-bottom: 1px solid #dde3ef;
+}
+
+.statusBadge.ant-tag {
+  border-radius: 999px;
+  border: none;
+  background: #e6edf9;
+  color: #4969a4;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.dashboardFoot {
+  margin-top: 16px;
+  color: #8a94a7;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 1100px) {
+  .hidden-lg {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hidden-md {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 480px) {
+  .hidden-sm {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .layoutPadding {
+    padding: 22px 14px;
+  }
+
+  .dashboardSpacing {
+    padding: 14px 12px 20px;
+  }
+
+  .erp-panel-content {
+    margin: 8px auto;
+    border-radius: 16px;
+  }
+
+  .chartHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trendControls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .trendTooltip {
+    position: static;
+    margin: 0 10px 12px;
+  }
+}

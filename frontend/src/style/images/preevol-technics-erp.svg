@@ -1,0 +1,6 @@
+<svg width="220" height="62" viewBox="0 0 220 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="62" height="62" rx="10" fill="#0050C8"/>
+  <path d="M14 48V14H35.5C43 14 47.5 18 47.5 24C47.5 28.5 44.8 31.7 40.4 33.1L48.5 48H40L33 36.3H21.5V48H14ZM21.5 30.7H34.2C37.6 30.7 39.4 29.3 39.4 25C39.4 20.7 37.6 19.3 34.2 19.3H21.5V30.7Z" fill="white"/>
+  <text x="78" y="28" fill="#0A143C" font-size="24" font-family="Arial, sans-serif" font-weight="700">Preevol</text>
+  <text x="78" y="50" fill="#0050C8" font-size="24" font-family="Arial, sans-serif" font-weight="700">Technics</text>
+</svg>
