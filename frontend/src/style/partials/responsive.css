@@ -1,0 +1,384 @@
+/* ================================================
+   RESPONSIVE STYLES - Mobile & Tablet Support
+   ================================================ */
+
+/* ---------- Header Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .appHeader {
+    padding: 12px 16px !important;
+    height: auto !important;
+    min-height: 60px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .appHeaderLeft {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .appHeaderTitle {
+    font-size: 18px !important;
+    margin-left: 50px;
+  }
+
+  .appHeaderSearch {
+    display: none;
+  }
+
+  .appHeaderRight {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .appHeaderRight .ant-select {
+    width: 140px !important;
+  }
+
+  .headerIconBtn {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .headerAvatar {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .headerStatusTag {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .appHeader {
+    padding: 10px 12px !important;
+  }
+
+  .appHeaderTitle {
+    font-size: 16px !important;
+    margin-left: 45px;
+  }
+
+  .appHeaderRight .ant-select {
+    width: 120px !important;
+  }
+
+  .appHeaderRight {
+    gap: 6px;
+  }
+}
+
+/* ---------- Layout Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .site-layout {
+    margin-left: 0 !important;
+  }
+
+  .site-layout-background {
+    padding: 16px !important;
+    min-height: calc(100vh - 60px) !important;
+  }
+
+  .layoutPadding {
+    padding: 16px !important;
+  }
+
+  .whiteBox {
+    margin: 0 !important;
+    border-radius: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .site-layout-background {
+    padding: 12px !important;
+  }
+
+  .layoutPadding {
+    padding: 12px !important;
+  }
+}
+
+/* ---------- Content Area Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  .erp-panel-content {
+    padding: 16px !important;
+  }
+
+  .page-content {
+    padding: 16px !important;
+  }
+
+  .content-area {
+    padding: 16px !important;
+  }
+}
+
+/* ---------- DataTable Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .dataTable {
+    overflow-x: auto;
+  }
+
+  .dataTable .ant-table {
+    min-width: 600px;
+  }
+
+  .dataTable .ant-table-thead > tr > th,
+  .dataTable .ant-table-tbody > tr > td {
+    padding: 8px 12px !important;
+    font-size: 13px;
+  }
+
+  .ant-pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .ant-pagination-options {
+    margin-left: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .dataTable .ant-table {
+    min-width: 500px;
+  }
+
+  .dataTable .ant-table-thead > tr > th,
+  .dataTable .ant-table-tbody > tr > td {
+    padding: 6px 8px !important;
+    font-size: 12px;
+  }
+}
+
+/* ---------- Form Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .ant-form-item {
+    margin-bottom: 16px !important;
+  }
+
+  .ant-form-item-label {
+    padding-bottom: 4px !important;
+  }
+
+  .form-container {
+    padding: 16px !important;
+  }
+}
+
+/* ---------- SidePanel Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .side-panel {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    max-width: 400px;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .side-panel.open {
+    transform: translateX(0);
+  }
+
+  .side-panel-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .side-panel {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Dashboard Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .dashboard-card {
+    margin-bottom: 16px;
+  }
+
+  .dashboard-stat {
+    padding: 16px;
+  }
+
+  .dashboard-chart {
+    min-height: 200px;
+  }
+}
+
+/* ---------- Modal/Drawer Mobile Styles ---------- */
+@media only screen and (max-width: 768px) {
+  .ant-modal {
+    max-width: calc(100vw - 32px) !important;
+    margin: 16px auto !important;
+  }
+
+  .ant-modal-body {
+    padding: 16px !important;
+  }
+
+  .ant-drawer-content-wrapper {
+    width: 100% !important;
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .ant-drawer-content-wrapper {
+    max-width: 100%;
+  }
+
+  .ant-modal {
+    max-width: calc(100vw - 24px) !important;
+    margin: 12px auto !important;
+  }
+}
+
+/* ---------- Button Group Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  .ant-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ant-btn-group .ant-btn {
+    flex: 1;
+    min-width: 80px;
+  }
+}
+
+/* ---------- Search & Filter Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  .search-box {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filter-bar .ant-select,
+  .filter-bar .ant-picker {
+    width: 100% !important;
+  }
+}
+
+/* ---------- Card/Panel Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  .ant-card {
+    margin-bottom: 16px;
+  }
+
+  .ant-card-head {
+    padding: 12px 16px;
+  }
+
+  .ant-card-body {
+    padding: 16px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .ant-card-head {
+    padding: 10px 12px;
+  }
+
+  .ant-card-body {
+    padding: 12px !important;
+  }
+}
+
+/* ---------- Grid System Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  .ant-row {
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+  }
+
+  .ant-col {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+/* ---------- Typography Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 24px !important;
+  }
+
+  h2 {
+    font-size: 20px !important;
+  }
+
+  h3 {
+    font-size: 18px !important;
+  }
+
+  h4 {
+    font-size: 16px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 22px !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+}
+
+/* ---------- Touch-friendly Targets ---------- */
+@media only screen and (max-width: 768px) {
+  .ant-menu-item,
+  .ant-btn,
+  .ant-select-selector,
+  .ant-picker,
+  .ant-input,
+  .ant-checkbox-wrapper,
+  .ant-radio-wrapper {
+    min-height: 44px;
+  }
+
+  .ant-menu-item {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* ---------- Scrollbar Styles Mobile ---------- */
+@media only screen and (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+  }
+}

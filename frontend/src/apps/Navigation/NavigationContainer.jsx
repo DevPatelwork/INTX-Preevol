@@ -43,7 +43,7 @@ const { Sider } = Layout;
 export default function Navigation() {
   const { isMobile } = useResponsive();
 
-  return isMobile ? <MobileSidebar /> : <Sidebar collapsible={false} />;
+  return isMobile ? <MobileSidebar /> : <Sidebar collapsible={true} />;
 }
 
 function Sidebar({ collapsible, isMobile = false }) {
@@ -54,6 +54,7 @@ function Sidebar({ collapsible, isMobile = false }) {
   const { navMenu } = appContextAction;
   const [currentPath, setCurrentPath] = useState(location.pathname.slice(1));
   const [openKeys, setOpenKeys] = useState([]);
+  const [collapsed, setCollapsed] = useState(isNavMenuClose);
 
   const translate = useLanguage();
   const navigate = useNavigate();
@@ -264,7 +265,8 @@ function Sidebar({ collapsible, isMobile = false }) {
       }
   }, [location, currentPath]);
 
-  const onCollapse = () => {
+  const onCollapse = (value) => {
+    setCollapsed(value);
     navMenu.collapse();
   };
 
@@ -277,24 +279,25 @@ function Sidebar({ collapsible, isMobile = false }) {
   return (
     <Sider
       collapsible={collapsible}
-      collapsed={collapsible ? isNavMenuClose : collapsible}
+      collapsed={collapsed}
       onCollapse={onCollapse}
-      className={`navigation ${isMobile ? 'navigation-mobile' : 'navigation-desktop'}`}
+      className={`navigation ${isMobile ? 'navigation-mobile' : 'navigation-desktop'} ${collapsed ? 'navigation-collapsed' : ''}`}
       width={256}
+      collapsedWidth={80}
       theme={'light'}
     >
       <div
-        className="logo"
+        className={`logo ${collapsed ? 'logo-collapsed' : ''}`}
         onClick={() => navigate('/dashboard')}
       >
         <img src={logoIcon} alt="Logo" className="logoIcon" />
-        <div className="logoBrandWrap">
+        <div className={`logoBrandWrap ${collapsed ? 'logoBrandWrap-hidden' : ''}`}>
           <span className="logoBrand">Preevol technics</span>
           <span className="logoSubBrand">Precision Ledger</span>
         </div>
       </div>
       <Menu
-        className="navigationMenu"
+        className={`navigationMenu ${collapsed ? 'navigationMenu-collapsed' : ''}`}
         items={items}
         mode="inline"
         theme={'light'}
