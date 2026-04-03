@@ -4,6 +4,23 @@ const router = express.Router();
 
 const appControllers = require('@/controllers/appControllers');
 const { routesList } = require('@/models/utils');
+const Company = require('@/models/appModels/Company');
+
+// DEBUG: Direct test endpoint for companies
+router.get('/company/test', async (req, res) => {
+  try {
+    const companies = await Company.find({ removed: false });
+    console.log('Direct test endpoint found', companies.length, 'companies');
+    res.json({
+      success: true,
+      count: companies.length,
+      companies: companies.map(c => ({ id: c._id, name: c.name })),
+      fullData: companies
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 const routerApp = (entity, controller) => {
   router.route(`/${entity}/create`).post(catchErrors(controller['create']));

@@ -1,4 +1,4 @@
-/* Navigation Styles - Light & Dark Mode Support */
+/* Navigation Styles - Minimal */
 
 .navigation {
   position: sticky !important;
@@ -12,89 +12,37 @@
   border: none;
   border-radius: 0;
   background: var(--surface-container) !important;
-  box-shadow: 
-    inset -1px 0 0 0 var(--outline),
-    4px 0 24px rgba(0, 0, 0, 0.08);
+  border-right: 1px solid var(--outline);
   font-family: var(--font-body);
-}
-
-/* Gradient mesh - subtle for light, visible for dark */
-.navigation::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(ellipse at 0% 0%, rgba(0, 74, 198, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(13, 148, 136, 0.02) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-[data-theme='dark'] .navigation::before {
-  background: 
-    radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(20, 184, 166, 0.05) 0%, transparent 50%);
 }
 
 .navigation .ant-layout-sider-children {
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
 }
 
 /* === LOGO SECTION === */
 .logo {
-  margin: 24px 20px 20px;
+  margin: 20px 16px 16px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   cursor: pointer;
   padding: 12px;
-  border-radius: var(--radius-lg);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: var(--surface-container-high);
+  border-radius: var(--radius-xl);
+  background: var(--surface-container);
   border: 1px solid var(--outline);
-  position: relative;
-  overflow: hidden;
-}
-
-.logo::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 .logo:hover {
-  background: var(--surface-container-higher);
+  background: var(--surface-container-high);
   border-color: var(--outline-variant);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.logo:hover::before {
-  opacity: 1;
 }
 
 .logoIcon {
-  height: 44px;
-  width: 44px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  filter: drop-shadow(0 0 8px rgba(0, 74, 198, 0.15));
-}
-
-[data-theme='dark'] .logoIcon {
-  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
+  height: 40px;
+  width: 40px;
+  border-radius: var(--radius-xl);
 }
 
 .logoBrandWrap {
@@ -105,17 +53,14 @@
 
 .logoBrand {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--on-surface);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 .logoSubBrand {
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
   color: var(--on-surface-muted);
   font-weight: 500;
 }
@@ -130,18 +75,17 @@
 
 .navigationMenu .ant-menu-item,
 .navigationMenu .ant-menu-submenu-title {
-  height: 46px !important;
-  line-height: 46px !important;
-  border-radius: var(--radius-md);
-  margin-block: 6px !important;
+  height: 42px !important;
+  line-height: 42px !important;
+  border-radius: var(--radius-xl);
+  margin-block: 4px !important;
   margin-inline: 0 !important;
   font-weight: 500;
   font-size: 13px;
   color: var(--on-surface-variant);
   background: transparent !important;
-  position: relative;
   padding-left: 16px !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   font-family: var(--font-body);
 }
 
@@ -155,7 +99,7 @@
 .navigationMenu .ant-menu-submenu-title .anticon {
   font-size: 18px;
   color: var(--on-surface-muted);
-  transition: all 0.25s ease;
+  transition: color 0.2s ease;
 }
 
 /* Hover State */
@@ -168,12 +112,6 @@
 .navigationMenu .ant-menu-item:hover .anticon,
 .navigationMenu .ant-menu-submenu-title:hover .anticon {
   color: var(--primary);
-  filter: drop-shadow(0 0 6px rgba(0, 74, 198, 0.3));
-}
-
-[data-theme='dark'] .navigationMenu .ant-menu-item:hover .anticon,
-[data-theme='dark'] .navigationMenu .ant-menu-submenu-title:hover .anticon {
-  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));
 }
 
 /* Selected State */
@@ -185,11 +123,6 @@
 
 .navigationMenu .ant-menu-item-selected .anticon {
   color: var(--primary);
-  filter: drop-shadow(0 0 8px rgba(0, 74, 198, 0.4));
-}
-
-[data-theme='dark'] .navigationMenu .ant-menu-item-selected .anticon {
-  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
 }
 
 /* Left accent bar for selected item */
@@ -200,14 +133,9 @@
   top: 50%;
   transform: translateY(-50%);
   width: 3px;
-  height: 24px;
+  height: 20px;
   border-radius: var(--radius-full);
-  background: linear-gradient(180deg, var(--primary), var(--primary-hover));
-  box-shadow: 0 0 10px rgba(0, 74, 198, 0.4);
-}
-
-[data-theme='dark'] .navigationMenu .ant-menu-item-selected::before {
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+  background: var(--primary);
 }
 
 /* Remove default Ant Design selected indicator */
@@ -298,8 +226,8 @@
 }
 
 .sidebar-rail:hover {
-  background: linear-gradient(180deg, var(--primary), var(--secondary));
-  opacity: 0.5;
+  background: var(--primary);
+  opacity: 0.3;
 }
 
 /* === MOBILE SIDEBAR === */
@@ -321,12 +249,12 @@
   top: 16px;
   left: 16px;
   z-index: 999;
-  height: 44px;
-  width: 44px;
-  border-radius: var(--radius-lg);
+  height: 40px;
+  width: 40px;
+  border-radius: var(--radius-xl);
   border: 1px solid var(--outline);
   background: var(--surface-container);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   display: none;
   align-items: center;
   justify-content: center;
@@ -338,7 +266,6 @@
   background: var(--surface-container-high);
   border-color: var(--primary);
   color: var(--primary);
-  box-shadow: var(--shadow-glow-primary);
 }
 
 .mobile-sidebar-btn .anticon {

@@ -1,7 +1,7 @@
 /* ERP Data Table Styles */
 .erpDataTableWrapper {
   background: var(--surface_container_lowest);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border_light);
   box-shadow: var(--shadow-card);
   overflow: hidden;
@@ -30,7 +30,7 @@
 .erpPageHeaderBack {
   cursor: pointer;
   padding: 6px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   transition: all 0.2s ease;
   color: var(--on_surface_variant);
 }
@@ -63,7 +63,7 @@
 /* Form Styles */
 .erpFormWrapper {
   background: var(--surface_container_lowest);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border_light);
   box-shadow: var(--shadow-card);
   padding: 24px;

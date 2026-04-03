@@ -15,24 +15,21 @@
 
 .whiteBox {
   background: var(--surface-container);
-  backdrop-filter: blur(8px);
   width: 100%;
   min-height: 100px;
   overflow: hidden;
   border: 1px solid var(--outline);
   border-radius: var(--radius-xl);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
 }
 
 .shadow {
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
 }
 
 .shadow:hover {
-  border-color: var(--primary);
-  box-shadow: var(--shadow-elevated), var(--shadow-glow-primary);
-  transform: translateY(-3px);
+  border-color: var(--outline-variant);
+  box-shadow: var(--shadow-md);
 }
 
 .line {
@@ -123,31 +120,13 @@
   background: var(--surface-container);
   border: 1px solid var(--outline);
   border-radius: var(--radius-xl);
-  padding: 24px;
-  box-shadow: var(--shadow-card);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.dashboardCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-}
-
-[data-theme='dark'] .dashboardCard::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
 }
 
 .dashboardCard:hover {
-  box-shadow: var(--shadow-elevated), var(--shadow-glow-primary);
+  box-shadow: var(--shadow-md);
   border-color: var(--outline-variant);
-  transform: translateY(-3px);
 }
 
 /* === SUMMARY CARDS === */
@@ -167,7 +146,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   font-size: 24px;
   margin-bottom: 16px;
   transition: all 0.3s ease;
@@ -176,27 +155,16 @@
 .summaryIcon.blue {
   color: var(--primary);
   background: var(--primary-container);
-  box-shadow: 0 0 20px rgba(0, 74, 198, 0.15);
-}
-
-[data-theme='dark'] .summaryIcon.blue {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .summaryIcon.orange {
   color: var(--secondary);
   background: var(--secondary-container);
-  box-shadow: 0 0 20px rgba(13, 148, 136, 0.15);
-}
-
-[data-theme='dark'] .summaryIcon.orange {
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
 }
 
 .summaryIcon.slate {
   color: var(--tertiary);
   background: var(--tertiary-container);
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
 }
 
 [data-theme='dark'] .summaryIcon.slate {
@@ -310,20 +278,10 @@
 
 .legendDot.billed {
   background: var(--primary);
-  box-shadow: 0 0 8px rgba(0, 74, 198, 0.3);
-}
-
-[data-theme='dark'] .legendDot.billed {
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
 }
 
 .legendDot.collected {
   background: var(--secondary);
-  box-shadow: 0 0 8px rgba(13, 148, 136, 0.3);
-}
-
-[data-theme='dark'] .legendDot.collected {
-  box-shadow: 0 0 8px rgba(20, 184, 166, 0.5);
 }
 
 .trendControls {
@@ -336,7 +294,7 @@
   margin-top: 20px;
   position: relative;
   border: 1px solid var(--outline);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   padding: 10px 10px 0;
   background: var(--surface-container-high);
 }
@@ -364,20 +322,10 @@
 
 .trendLine.billed {
   stroke: var(--primary);
-  filter: drop-shadow(0 0 4px rgba(0, 74, 198, 0.3));
-}
-
-[data-theme='dark'] .trendLine.billed {
-  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
 }
 
 .trendLine.collected {
   stroke: var(--secondary);
-  filter: drop-shadow(0 0 4px rgba(13, 148, 136, 0.3));
-}
-
-[data-theme='dark'] .trendLine.collected {
-  filter: drop-shadow(0 0 4px rgba(20, 184, 166, 0.5));
 }
 
 .trendPointerLine {
@@ -404,10 +352,10 @@
   top: 16px;
   right: 16px;
   min-width: 190px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--outline);
   background: var(--surface-container-high);
-  box-shadow: var(--shadow-elevated);
+  box-shadow: var(--shadow-md);
   padding: 12px 14px;
 }
 
@@ -446,7 +394,7 @@
   top: 10px;
   right: 10px;
   z-index: 2;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   background: var(--surface-container);
   border: 1px solid var(--outline);
   color: var(--on-surface-variant);
@@ -457,23 +405,9 @@
 /* === PROMOTE CARD === */
 .promoteCard {
   margin-bottom: 16px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-active) 100%);
+  background: var(--primary);
   color: var(--on-primary);
   border: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.promoteCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
-  pointer-events: none;
 }
 
 .promoteCard p {
@@ -486,17 +420,16 @@
 }
 
 .solidActionBtn.ant-btn {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: none;
   background: var(--surface) !important;
   color: var(--primary) !important;
-  font-weight: 700;
-  box-shadow: var(--shadow-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
 }
 
 .solidActionBtn.ant-btn:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .quickActionsCard h5 {
@@ -515,10 +448,10 @@
 }
 
 .quickActionsGrid .ant-btn {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--outline);
   color: var(--on-surface-variant);
-  font-weight: 600;
+  font-weight: 500;
   background: var(--surface-container-high);
   transition: all 0.2s ease;
 }
@@ -526,7 +459,6 @@
 .quickActionsGrid .ant-btn:hover {
   border-color: var(--primary);
   color: var(--primary);
-  box-shadow: var(--shadow-glow-primary);
 }
 
 .mrgTop16 {
@@ -545,9 +477,8 @@
 .recentHeader h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 22px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 0.01em;
 }
 
 .recentCard .ant-table-wrapper .ant-table {
@@ -575,18 +506,13 @@
 
 /* === STATUS BADGE === */
 .statusBadge.ant-tag {
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-xl);
   border: none;
   background: var(--primary-container);
   color: var(--primary);
   font-weight: 600;
   text-transform: capitalize;
   padding: 4px 12px;
-  box-shadow: 0 0 10px rgba(0, 74, 198, 0.1);
-}
-
-[data-theme='dark'] .statusBadge.ant-tag {
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
 }
 
 /* === DASHBOARD FOOTER === */
@@ -596,8 +522,6 @@
   border-top: 1px solid var(--outline);
   color: var(--on-surface-muted);
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   display: flex;
   justify-content: space-between;
 }

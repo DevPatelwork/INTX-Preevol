@@ -169,7 +169,12 @@ const request = {
       }
       query = query.slice(0, -1);
 
-      const response = await axios.get(entity + '/list' + query);
+      const url = entity + '/list' + query;
+      console.log('API Request URL:', url);
+      
+      const response = await axios.get(url);
+      
+      console.log('API Response:', { entity, data: response.data });
 
       successHandler(response, {
         notifyOnSuccess: false,
@@ -177,6 +182,7 @@ const request = {
       });
       return response.data;
     } catch (error) {
+      console.error('API Error:', { entity, error: error.message, response: error.response });
       return errorHandler(error);
     }
   },

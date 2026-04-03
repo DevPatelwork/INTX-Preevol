@@ -149,7 +149,12 @@ export default function DataTable({ config, extra = [] }) {
 
   const { result: listResult, isLoading: listIsLoading } = useSelector(selectListItems);
 
-  const { pagination, items: dataSource } = listResult;
+  // Debug logging
+  console.log('DataTable Debug:', { entity, listResult, isLoading: listIsLoading });
+
+  const { pagination, items: dataSource } = listResult || { pagination: {}, items: [] };
+
+  console.log('DataTable DataSource:', { pagination, dataSource, dataSourceLength: dataSource?.length });
 
   const [searchTerm, setSearchTerm] = useState('');
 

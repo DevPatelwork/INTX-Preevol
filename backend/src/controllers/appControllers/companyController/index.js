@@ -3,82 +3,94 @@ const createCRUDController = require('@/controllers/middlewaresControllers/creat
 const { appendAudit } = require('@/controllers/helpers/companyScope');
 const Company = require('@/models/appModels/Company');
 
+console.log('✅ Company Controller Module Loaded');
+
 function modelController() {
   const methods = createCRUDController('Company');
+  console.log('✅ Company Controller Initialized, default methods:', Object.keys(methods));
 
   const baseCreate = methods.create;
   const baseUpdate = methods.update;
   const baseListAll = methods.listAll;
+  const baseRead = methods.read;
+  const baseSearch = methods.search;
+  const baseFilter = methods.filter;
 
+  // Override paginatedList to skip company filter - companies don't have company field
   methods.paginatedList = async (req, res) => {
-    console.log('Company paginatedList called');
-    // Skip company filter for companies - they don't have a company field
-    const Model = Company;
-    const page = req.query.page || 1;
+    console.log('Company paginatedList called - custom implementation');
+    console.log('Query params:', req.query);
+    
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.items) || 10;
-    const skip = page * limit - limit;
+    const skip = (page - 1) * limit;
 
     const { sortBy = 'created', sortValue = -1 } = req.query;
 
-    const resultsPromise = Model.find({
-      removed: false,
-    })
-      .skip(skip)
-      .limit(limit)
-      .sort({ [sortBy]: sortValue })
-      .exec();
+    try {
+      // First, let's check what's in the database
+      const allCompanies = await Company.find({ removed: false });
+      console.log('All companies in DB:', allCompanies.length, allCompanies.map(c => c.name));
 
-    const countPromise = Model.countDocuments({
-      removed: false,
-    });
+      // Query without company filter - companies are top-level entities
+      const resultsPromise = Company.find({ removed: false })
+        .skip(skip)
+        .limit(limit)
+        .sort({ [sortBy]: parseInt(sortValue) })
+        .exec();
 
-    const [result, count] = await Promise.all([resultsPromise, countPromise]);
-    console.log('Company paginatedList found', count, 'companies');
-    const pages = Math.ceil(count / limit);
-    const pagination = { page, pages, count };
+      const countPromise = Company.countDocuments({ removed: false });
 
-    if (count > 0) {
+      const [result, count] = await Promise.all([resultsPromise, countPromise]);
+      
+      console.log('Company paginatedList found', count, 'companies, returned', result.length);
+      console.log('Result array:', result.map(c => ({ id: c._id, name: c.name })));
+      
+      const pages = Math.ceil(count / limit);
+      const pagination = { page, pages, count, pageSize: limit };
+
       return res.status(200).json({
         success: true,
-        result,
+        result: result,
         pagination,
-        message: 'Successfully found all documents',
+        message: count > 0 ? 'Successfully found all documents' : 'Collection is Empty',
       });
-    } else {
-      return res.status(203).json({
-        success: true,
+    } catch (error) {
+      console.error('Company paginatedList error:', error);
+      return res.status(500).json({
+        success: false,
         result: [],
-        pagination,
-        message: 'Collection is Empty',
+        pagination: { page: 1, pages: 0, count: 0 },
+        message: 'Error fetching companies: ' + error.message,
       });
     }
   };
 
+  // Override list to use our custom paginatedList
   methods.list = methods.paginatedList;
 
+  // Override listAll to skip company filter
   methods.listAll = async (req, res) => {
+    console.log('Company listAll called');
     try {
-      const result = await Company.find({
-        removed: false,
-      })
+      const result = await Company.find({ removed: false })
         .sort({ created: 'desc' })
         .exec();
 
-      if (result.length > 0) {
-        return res.status(200).json({
-          success: true,
-          result,
-          message: 'Successfully found all documents',
-        });
-      } else {
-        return res.status(203).json({
-          success: false,
-          result: [],
-          message: 'Collection is Empty',
-        });
-      }
+      console.log('Company listAll found', result.length, 'companies');
+
+      return res.status(200).json({
+        success: true,
+        result,
+        message: result.length > 0 ? 'Successfully found all documents' : 'Collection is Empty',
+      });
     } catch (error) {
-      throw error;
+      console.error('Company listAll error:', error);
+      return res.status(500).json({
+        success: false,
+        result: [],
+        message: 'Error fetching companies: ' + error.message,
+      });
     }
   };
 
