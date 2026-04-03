@@ -1,5 +1,4 @@
-import { Form } from 'antd';
-import { TextField, Switch } from '@mui/material';
+import { Form, Input, InputNumber, Select, Switch } from 'antd';
 import useLanguage from '@/locale/useLanguage';
 
 const formItems = [
@@ -57,14 +56,6 @@ export default function SettingForm() {
             key={item.settingKey}
             label={item.label ? translate(item.label) : translate(item.settingKey)}
             name={item.settingKey}
-            {...(item.valueType === 'number'
-              ? {
-                  getValueFromEvent: (event) => {
-                    const value = event?.target?.value;
-                    return value === '' ? '' : Number(value);
-                  },
-                }
-              : {})}
             rules={[
               {
                 required: false,
@@ -72,12 +63,10 @@ export default function SettingForm() {
             ]}
             valuePropName={item.valueType === 'boolean' ? 'checked' : 'value'}
           >
-            {item.valueType === 'string' && <TextField fullWidth size="small" autoComplete="off" />}
-            {item.valueType === 'number' && (
-              <TextField fullWidth size="small" type="number" inputProps={{ min: 0 }} />
-            )}
+            {item.valueType === 'string' && <Input autoComplete="off" />}
+            {item.valueType === 'number' && <InputNumber min={0} style={{ width: '100%' }} />}
             {item.valueType === 'boolean' && <Switch />}
-            {item.valueType === 'array' && <TextField fullWidth size="small" />}
+            {item.valueType === 'array' && <Input />}
           </Form.Item>
         );
       })}

@@ -1,7 +1,8 @@
-import { Form } from 'antd';
-import { TextField, MenuItem } from '@mui/material';
+import { Form, Input, Select } from 'antd';
 
 import useLanguage from '@/locale/useLanguage';
+
+const { Option } = Select;
 
 export default function GeneralSettingForm() {
   const translate = useLanguage();
@@ -58,13 +59,13 @@ export default function GeneralSettingForm() {
           },
         ]}
       >
-        <TextField select fullWidth size="small">
+        <Select>
           {dateFormats.map((format) => (
-            <MenuItem key={format} value={format}>
+            <Option key={format} value={format}>
               {format}
-            </MenuItem>
+            </Option>
           ))}
-        </TextField>
+        </Select>
       </Form.Item>
       <Form.Item
         label={translate('email')}
@@ -76,7 +77,7 @@ export default function GeneralSettingForm() {
           },
         ]}
       >
-        <TextField fullWidth size="small" type="email" />
+        <Input type="email" />
       </Form.Item>
     </div>
   );

@@ -8,11 +8,23 @@ export default function SetingsSection({ title, description, children }) {
         <Box sx={{ mb: 1 }}>
           <Typography
             variant="h5"
-            sx={{ fontWeight: 700, color: '#12243f', fontFamily: 'var(--font-heading)' }}
+            sx={{
+              fontWeight: 600,
+              color: 'var(--on-surface)',
+              fontFamily: 'var(--font-display)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.02em',
+            }}
           >
             {title}
           </Typography>
-          <Typography variant="body2" sx={{ color: '#5f6f85', mt: 0.5 }}>
+          <Typography
+            variant="body2"
+            sx={{
+              color: 'var(--on-surface-muted)',
+              mt: 0.5,
+            }}
+          >
             {description}
           </Typography>
         </Box>
@@ -28,7 +40,7 @@ export default function SetingsSection({ title, description, children }) {
         {children}
       </Col>
       <Col span={24}>
-        <Divider sx={{ borderColor: 'rgba(24, 42, 71, 0.12)' }} />
+        <Divider sx={{ borderColor: 'var(--outline)' }} />
       </Col>
     </Row>
   );

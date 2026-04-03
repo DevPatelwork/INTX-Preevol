@@ -1,9 +1,10 @@
-import { Form } from 'antd';
-import { TextField, MenuItem, Switch } from '@mui/material';
+import { Form, Input, InputNumber, Select, Switch } from 'antd';
 
 import useLanguage from '@/locale/useLanguage';
 
 import { currencyOptions } from '@/utils/currencyList';
+
+const { Option } = Select;
 
 export default function SettingsForm() {
   const translate = useLanguage();
@@ -19,13 +20,13 @@ export default function SettingsForm() {
           },
         ]}
       >
-        <TextField select fullWidth size="small">
+        <Select>
           {currencyOptions().map((currency) => (
-            <MenuItem key={currency.value} value={currency.value}>
+            <Option key={currency.value} value={currency.value}>
               {currency.label}
-            </MenuItem>
+            </Option>
           ))}
-        </TextField>
+        </Select>
       </Form.Item>
       <Form.Item
         label={translate('Currency Symbol')}
@@ -36,7 +37,7 @@ export default function SettingsForm() {
           },
         ]}
       >
-        <TextField fullWidth size="small" />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -48,10 +49,10 @@ export default function SettingsForm() {
           },
         ]}
       >
-        <TextField select fullWidth size="small">
-          <MenuItem value="before">{translate('before')}</MenuItem>
-          <MenuItem value="after">{translate('after')}</MenuItem>
-        </TextField>
+        <Select>
+          <Option value="before">{translate('before')}</Option>
+          <Option value="after">{translate('after')}</Option>
+        </Select>
       </Form.Item>
       <Form.Item
         label={translate('Decimal Separator')}
@@ -62,7 +63,7 @@ export default function SettingsForm() {
           },
         ]}
       >
-        <TextField fullWidth size="small" autoComplete="off" />
+        <Input autoComplete="off" />
       </Form.Item>
       <Form.Item
         label={translate('Thousand Separator')}
@@ -73,22 +74,18 @@ export default function SettingsForm() {
           },
         ]}
       >
-        <TextField fullWidth size="small" autoComplete="off" />
+        <Input autoComplete="off" />
       </Form.Item>
       <Form.Item
         label={translate('Cent precision')}
         name="cent_precision"
-        getValueFromEvent={(event) => {
-          const value = event?.target?.value;
-          return value === '' ? '' : Number(value);
-        }}
         rules={[
           {
             required: true,
           },
         ]}
       >
-        <TextField fullWidth size="small" type="number" inputProps={{ min: 0 }} />
+        <InputNumber min={0} style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
         label={translate('Zero Format')}

@@ -111,6 +111,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-schema.index({ name: 1 }, { unique: true });
+schema.index({ name: 1 }, { unique: true, partialFilterExpression: { removed: { $eq: false } } });
 
 module.exports = mongoose.model('Company', schema);

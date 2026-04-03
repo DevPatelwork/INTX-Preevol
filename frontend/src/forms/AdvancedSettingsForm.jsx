@@ -6,6 +6,8 @@ import { useState } from 'react';
 
 import useLanguage from '@/locale/useLanguage';
 
+const { Option } = Select;
+
 export function SelectType() {
   const translate = useLanguage();
 
@@ -75,32 +77,13 @@ export default function AdvancedSettingsForm({ isUpdateForm = false }) {
           },
         ]}
       >
-        <Select
-          placeholder={translate('Select')}
-          options={[
-            {
-              value: 'app_settings',
-              label: translate('App Settings'),
-            },
-            {
-              value: 'crm_settings',
-              label: translate('CRM Settings'),
-            },
-
-            {
-              value: 'finance_settings',
-              label: translate('Finance Settings'),
-            },
-            {
-              value: 'company_settings',
-              label: translate('Company Settings'),
-            },
-            {
-              value: 'money_format_settings',
-              label: translate('Money Format Settings'),
-            },
-          ]}
-        />
+        <Select placeholder={translate('Select')}>
+          <Option value="app_settings">{translate('App Settings')}</Option>
+          <Option value="crm_settings">{translate('CRM Settings')}</Option>
+          <Option value="finance_settings">{translate('Finance Settings')}</Option>
+          <Option value="company_settings">{translate('Company Settings')}</Option>
+          <Option value="money_format_settings">{translate('Money Format Settings')}</Option>
+        </Select>
       </Form.Item>
       <Form.Item
         label={translate('Setting Name')}
@@ -123,29 +106,12 @@ export default function AdvancedSettingsForm({ isUpdateForm = false }) {
           },
         ]}
       >
-        <Select
-          placeholder={translate('Select')}
-          onChange={handleChange}
-          options={[
-            {
-              value: 'text',
-              label: 'Text',
-            },
-            {
-              value: 'number',
-              label: 'Number',
-            },
-
-            {
-              value: 'date',
-              label: 'Date',
-            },
-            {
-              value: 'select',
-              label: 'Select',
-            },
-          ]}
-        />
+        <Select placeholder={translate('Select')} onChange={handleChange}>
+          <Option value="text">Text</Option>
+          <Option value="number">Number</Option>
+          <Option value="date">Date</Option>
+          <Option value="select">Select</Option>
+        </Select>
       </Form.Item>
       {type ? (
         type === 'select' ? (

@@ -55,9 +55,9 @@ export default function UpdateSettingForm({ config, children, withUpload, upload
           form={form}
           onFinish={onSubmit}
           // onValuesChange={handleValuesChange}
-          labelCol={{ span: 9 }}
+          labelCol={{ span: 6 }}
           labelAlign="left"
-          wrapperCol={{ span: 16 }}
+          wrapperCol={{ span: 18 }}
           style={{ maxWidth: 980 }}
         >
           {children}
