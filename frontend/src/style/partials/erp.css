@@ -1,3 +1,97 @@
+/* ERP Data Table Styles */
+.erpDataTableWrapper {
+  background: var(--surface_container_lowest);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border_light);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.erpPageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--surface_container_low);
+  border-bottom: 1px solid var(--border_light);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.erpPageHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--on_surface);
+}
+
+.erpPageHeaderBack {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  color: var(--on_surface_variant);
+}
+
+.erpPageHeaderBack:hover {
+  background: var(--surface_container);
+  color: var(--primary);
+}
+
+.erpPageHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.erpTableContainer {
+  padding: 0;
+}
+
+.erpTableContainer .ant-table {
+  border-radius: 0;
+  border: none;
+}
+
+.erpTableContainer .ant-table-thead > tr > th {
+  background: var(--surface_container_low) !important;
+}
+
+/* Form Styles */
+.erpFormWrapper {
+  background: var(--surface_container_lowest);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border_light);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+}
+
+.erpFormSection {
+  margin-bottom: 24px;
+}
+
+.erpFormSectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on_surface);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border_light);
+}
+
+.erpFormActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border_light);
+  margin-top: 24px;
+}
+
+/* Money Input Styles */
 .moneyInput {
   width: 100%;
 }

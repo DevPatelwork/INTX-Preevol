@@ -186,7 +186,6 @@ export default function HeaderContent() {
   return (
     <Header className="appHeader">
       <div className="appHeaderLeft">
-        <h2 className="appHeaderTitle">{pageTitle}</h2>
         <Input
           className="appHeaderSearch"
           placeholder="Search POs or Invoices..."
@@ -199,7 +198,7 @@ export default function HeaderContent() {
           value={currentCompany}
           onChange={handleCompanyChange}
           placeholder="Select Company"
-          style={{ width: 200, marginRight: 12 }}
+          className="companySelect"
           prefix={<ShopOutlined />}
           options={companies
             .filter((company) => company._id && company.name)

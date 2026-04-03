@@ -10,7 +10,7 @@
   border: none;
   border-radius: 0;
   background: var(--surface_container_low) !important;
-  box-shadow: none;
+  box-shadow: 1px 0 0 0 var(--border_light);
 }
 
 .navigation .ant-layout-sider-children {
@@ -19,68 +19,102 @@
 }
 
 .logo {
-  margin: 16px 14px 12px;
+  margin: 20px 16px 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+}
+
+.logo:hover {
+  background: var(--surface_container);
 }
 
 .logoIcon {
-  height: 36px;
-  width: 36px;
-  border-radius: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .logoBrandWrap {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .logoBrand {
   font-size: 15px;
   font-weight: 700;
-  color: #1652be;
+  color: var(--primary);
+  letter-spacing: -0.01em;
 }
 
 .logoSubBrand {
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #6d7a90;
+  letter-spacing: 0.5px;
+  color: var(--on_surface_subtle);
+  font-weight: 500;
 }
 
 .navigationMenu {
   width: 100% !important;
   border-inline-end: none !important;
   background: transparent !important;
-  padding: 6px 10px 80px !important;
+  padding: 8px 12px 80px !important;
 }
 
-.navigationMenu .ant-menu-item {
-  height: 42px !important;
-  line-height: 42px !important;
+.navigationMenu .ant-menu-item,
+.navigationMenu .ant-menu-submenu-title {
+  height: 44px !important;
+  line-height: 44px !important;
   border-radius: var(--radius-md);
-  margin-block: 5px !important;
-  font-weight: 600;
+  margin-block: 4px !important;
+  margin-inline: 0 !important;
+  font-weight: 500;
   color: var(--on_surface_variant);
   background: transparent !important;
   position: relative;
-  padding-left: 22px !important;
+  padding-left: 16px !important;
+  transition: all 0.2s ease;
 }
 
-.navigationMenu .ant-menu-item .ant-menu-title-content {
-  font-size: 14px;
+.navigationMenu .ant-menu-item .ant-menu-title-content,
+.navigationMenu .ant-menu-submenu-title .ant-menu-title-content {
+  font-size: 13px;
+  letter-spacing: 0.01em;
 }
 
-.navigationMenu .ant-menu-item .anticon {
+.navigationMenu .ant-menu-item .anticon,
+.navigationMenu .ant-menu-submenu-title .anticon {
   font-size: 16px;
+  color: var(--on_surface_subtle);
+  transition: color 0.2s ease;
+}
+
+.navigationMenu .ant-menu-item:hover,
+.navigationMenu .ant-menu-submenu-title:hover {
+  color: var(--primary) !important;
+  background: var(--surface_container) !important;
+}
+
+.navigationMenu .ant-menu-item:hover .anticon,
+.navigationMenu .ant-menu-submenu-title:hover .anticon {
+  color: var(--primary);
 }
 
 .navigationMenu .ant-menu-item-selected {
-  color: var(--on_primary_fixed_variant) !important;
-  background: var(--surface_bright) !important;
+  color: var(--primary) !important;
+  background: var(--secondary_container) !important;
+  font-weight: 600;
+}
+
+.navigationMenu .ant-menu-item-selected .anticon {
+  color: var(--primary);
 }
 
 .navigationMenu .ant-menu-item-selected::after {
@@ -91,16 +125,27 @@
   content: '';
   position: absolute;
   left: 6px;
-  top: 7px;
-  bottom: 7px;
-  width: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
   border-radius: var(--radius-full);
   background: var(--primary);
 }
 
-.navigationMenu .ant-menu-item-active {
-  color: var(--primary) !important;
-  background: var(--surface_container) !important;
+/* Submenu styles */
+.navigationMenu .ant-menu-submenu .ant-menu-sub {
+  background: transparent !important;
+}
+
+.navigationMenu .ant-menu-submenu .ant-menu-sub .ant-menu-item {
+  padding-left: 48px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+.navigationMenu .ant-menu-submenu-arrow {
+  color: var(--on_surface_subtle);
 }
 
 /* Collapsed sidebar styles */

@@ -173,13 +173,16 @@ export default function DataTable({ config, extra = [] }) {
   };
 
   return (
-    <>
-      <PageHeader
-        title={DATATABLE_TITLE}
-        ghost={true}
-        onBack={() => window.history.back()}
-        backIcon={<ArrowLeftOutlined />}
-        extra={[
+    <div className="erpDataTableWrapper">
+      <div className="erpPageHeader">
+        <div className="erpPageHeaderTitle">
+          <ArrowLeftOutlined 
+            onClick={() => window.history.back()}
+            className="erpPageHeaderBack"
+          />
+          <span>{DATATABLE_TITLE}</span>
+        </div>
+        <div className="erpPageHeaderActions">
           <AutoCompleteAsync
             key="search-auto-complete"
             entity={searchConfig?.entity}
@@ -189,27 +192,26 @@ export default function DataTable({ config, extra = [] }) {
             // redirectLabel={'Add New Client'}
             // withRedirect
             // urlToRedirect={'/customer'}
-          />,
+          />
           <Button onClick={handelDataTableLoad} key="refresh-button" icon={<RedoOutlined />}>
             {translate('Refresh')}
-          </Button>,
+          </Button>
 
-          !disableAdd && <AddNewItem config={config} key="add-new-item" />,
-        ]}
-        style={{
-          padding: '20px 0px',
-        }}
-      ></PageHeader>
+          {!disableAdd && <AddNewItem config={config} key="add-new-item" />}
+        </div>
+      </div>
 
-      <Table
-        columns={dataTableColumns}
-        rowKey={(item) => item._id}
-        dataSource={dataSource}
-        pagination={pagination}
-        loading={listIsLoading}
-        onChange={handelDataTableLoad}
-        scroll={{ x: true }}
-      />
-    </>
+      <div className="erpTableContainer">
+        <Table
+          columns={dataTableColumns}
+          rowKey={(item) => item._id}
+          dataSource={dataSource}
+          pagination={pagination}
+          loading={listIsLoading}
+          onChange={handelDataTableLoad}
+          scroll={{ x: true }}
+        />
+      </div>
+    </div>
   );
 }
