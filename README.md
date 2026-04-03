@@ -1,7 +1,6 @@
 <div align="center">
     <a href="https://github.com/DevPatelwork/INTX-Preevol">
-  <img src="https://avatars.githubusercontent.com/u/50052356?s=200&v=4" width="128px" />
-    </a>
+  </a>
     <h1>Preevol ERP CRM - Accounting Invoice Quote</h1>
     <p align="center">
         <p>Preevol ERP CRM | Simple To Use</p>
