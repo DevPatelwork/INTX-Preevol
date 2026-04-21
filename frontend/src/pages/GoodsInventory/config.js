@@ -1,4 +1,5 @@
 export const fields = {
+  enabled: { type: 'boolean', label: 'Enabled', defaultValue: true },
   company: { type: 'async', entity: 'company', displayLabels: ['name'], outputValue: '_id', required: true, disableForTable: true },
   companyName: { type: 'string', label: 'company', dataIndex: ['company', 'name'], disableForForm: true },
   goods: { type: 'async', entity: 'goods', displayLabels: ['goodsName'], outputValue: '_id', required: true, disableForTable: true },
@@ -12,4 +13,8 @@ export const fields = {
   pricePerUnit: { type: 'number' },
   totalPrice: { type: 'number' },
   remarks: { type: 'string' },
+  legacyInventoryId: { type: 'number', label: 'Legacy Inventory ID' },
+  goodsId: { type: 'number', label: 'Goods ID' },
+  partyName: { type: 'string', label: 'Party Name' },
+  partyOtherDetail: { type: 'string', label: 'Party Other Detail' },
 };

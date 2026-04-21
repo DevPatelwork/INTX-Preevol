@@ -12,6 +12,7 @@ import ItemRow from '@/modules/ErpPanelModule/ItemRow';
 
 import MoneyInputFormItem from '@/components/MoneyInputFormItem';
 import { selectFinanceSettings } from '@/redux/settings/selectors';
+import { selectCurrentCompany } from '@/redux/auth/selectors';
 import { useDate } from '@/settings';
 import useLanguage from '@/locale/useLanguage';
 
@@ -33,29 +34,64 @@ function LoadQuoteForm({ subTotal = 0, current = null }) {
   const translate = useLanguage();
   const { dateFormat } = useDate();
   const { last_quote_number } = useSelector(selectFinanceSettings);
+  const currentCompany = useSelector(selectCurrentCompany);
+  const taxQueryParams = currentCompany ? { company: currentCompany._id || currentCompany } : {};
   const [lastNumber, setLastNumber] = useState(() => last_quote_number + 1);
 
   const [total, setTotal] = useState(0);
   const [taxRate, setTaxRate] = useState(0);
   const [taxTotal, setTaxTotal] = useState(0);
+  const [discountRate, setDiscountRate] = useState(0);
+  const [discountTotal, setDiscountTotal] = useState(0);
+  const [discountType, setDiscountType] = useState('percentage');
+  const [discountValue, setDiscountValue] = useState(0);
   const [currentYear, setCurrentYear] = useState(() => new Date().getFullYear());
   const handelTaxChange = (value) => {
     setTaxRate(value / 100);
   };
 
+  const handelDiscountChange = (value) => {
+    if (discountType === 'percentage') {
+      setDiscountRate(value / 100);
+    } else {
+      setDiscountValue(value);
+    }
+  };
+
+  const handelDiscountTypeChange = (type) => {
+    setDiscountType(type);
+    if (type === 'percentage') {
+      setDiscountRate(discountValue / 100);
+      setDiscountValue(0);
+    } else {
+      setDiscountRate(0);
+    }
+  };
+
   useEffect(() => {
     if (current) {
-      const { taxRate = 0, year, number } = current;
+      const { taxRate = 0, discount = 0, year, number } = current;
       setTaxRate(taxRate / 100);
+      setDiscountRate(discount / 100);
       setCurrentYear(year);
       setLastNumber(number);
     }
   }, [current]);
   useEffect(() => {
-    const currentTotal = calculate.add(calculate.multiply(subTotal, taxRate), subTotal);
-    setTaxTotal(Number.parseFloat(calculate.multiply(subTotal, taxRate)));
+    let discountAmount;
+    if (discountType === 'percentage') {
+      discountAmount = calculate.multiply(subTotal, discountRate);
+    } else {
+      discountAmount = Math.min(discountValue, subTotal);
+    }
+    const discountedSubTotal = calculate.sub(subTotal, discountAmount);
+    const taxAmount = calculate.multiply(discountedSubTotal, taxRate);
+    const currentTotal = calculate.add(discountedSubTotal, taxAmount);
+    
+    setDiscountTotal(Number.parseFloat(discountAmount));
+    setTaxTotal(Number.parseFloat(taxAmount));
     setTotal(Number.parseFloat(currentTotal));
-  }, [subTotal, taxRate]);
+  }, [subTotal, taxRate, discountRate, discountValue, discountType]);
 
   const addField = useRef(false);
 
@@ -240,6 +276,68 @@ function LoadQuoteForm({ subTotal = 0, current = null }) {
         </Row>
         <Row gutter={[12, -5]}>
           <Col className="gutter-row" span={4} offset={15}>
+            <p
+              style={{
+                paddingLeft: '12px',
+                paddingTop: '5px',
+                margin: 0,
+                textAlign: 'right',
+              }}
+            >
+              {translate('Discount')} :
+            </p>
+          </Col>
+          <Col className="gutter-row" span={5}>
+            <Form.Item
+              name="discountType"
+              initialValue="percentage"
+              style={{ marginBottom: 0, display: 'inline-block', width: '40%' }}
+            >
+              <Select
+                value={discountType}
+                onChange={handelDiscountTypeChange}
+                options={[
+                  { value: 'percentage', label: '%' },
+                  { value: 'value', label: 'Value' },
+                ]}
+              />
+            </Form.Item>
+            <Form.Item
+              name="discount"
+              rules={[{ required: false }]}
+              style={{ marginBottom: 0, display: 'inline-block', width: '58%', marginLeft: '2%' }}
+            >
+              <InputNumber
+                value={discountType === 'percentage' ? discountRate * 100 : discountValue}
+                onChange={handelDiscountChange}
+                min={0}
+                max={discountType === 'percentage' ? 100 : subTotal}
+                formatter={(value) => (discountType === 'percentage' ? `${value}%` : value)}
+                parser={(value) => value.replace('%', '')}
+                style={{ width: '100%' }}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={[12, -5]}>
+          <Col className="gutter-row" span={4} offset={15}>
+            <p
+              style={{
+                paddingLeft: '12px',
+                paddingTop: '5px',
+                margin: 0,
+                textAlign: 'right',
+              }}
+            >
+              {translate('Discount Total')} :
+            </p>
+          </Col>
+          <Col className="gutter-row" span={5}>
+            <MoneyInputFormItem readOnly value={discountTotal} />
+          </Col>
+        </Row>
+        <Row gutter={[12, -5]}>
+          <Col className="gutter-row" span={4} offset={15}>
             <Form.Item
               name="taxRate"
               rules={[
@@ -249,7 +347,7 @@ function LoadQuoteForm({ subTotal = 0, current = null }) {
               ]}
             >
               <SelectAsync
-                value={taxRate}
+                value={taxRate * 100}
                 onChange={handelTaxChange}
                 entity={'taxes'}
                 outputValue={'taxValue'}
@@ -258,6 +356,7 @@ function LoadQuoteForm({ subTotal = 0, current = null }) {
                 urlToRedirect="/taxes"
                 redirectLabel={translate('Add New Tax')}
                 placeholder={translate('Select Tax Value')}
+                queryParams={taxQueryParams}
               />
             </Form.Item>
           </Col>

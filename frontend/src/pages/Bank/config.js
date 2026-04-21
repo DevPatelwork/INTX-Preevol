@@ -1,4 +1,5 @@
 export const fields = {
+  enabled: { type: 'boolean', label: 'Enabled', defaultValue: true },
   company: {
     type: 'async',
     entity: 'company',

@@ -13,6 +13,29 @@
 }
 
 /* === DROPDOWN MENUS === */
+.ant-dropdown-menu,
+.ant-select-dropdown {
+  border-radius: var(--radius-xl) !important;
+  background: var(--surface-container-high) !important;
+  padding: 8px !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--outline) !important;
+}
+
+.ant-dropdown-menu-item,
+.ant-select-item {
+  border-radius: var(--radius-xl) !important;
+  transition: all 0.2s ease;
+}
+
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active,
+.ant-select-item-option-active,
+.ant-select-item-option-selected {
+  background: var(--primary-container) !important;
+  color: var(--primary) !important;
+}
+
 .headerIcon .ant-dropdown-menu {
   border-radius: var(--radius-xl);
   background: var(--surface-container-high);

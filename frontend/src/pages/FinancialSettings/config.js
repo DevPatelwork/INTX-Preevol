@@ -1,4 +1,5 @@
 export const fields = {
+  enabled: { type: 'boolean', label: 'Enabled', defaultValue: true },
   company: {
     type: 'async',
     entity: 'company',
@@ -21,4 +22,5 @@ export const fields = {
   proformaSalesInvoiceCount: { type: 'string' },
   proformaServiceInvoiceCount: { type: 'string' },
   quotationCount: { type: 'string' },
+  legacyFinancialYearId: { type: 'number', label: 'Legacy Financial Year ID' },
 };

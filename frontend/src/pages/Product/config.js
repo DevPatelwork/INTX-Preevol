@@ -17,11 +17,19 @@ export const fields = {
     type: 'string',
     required: true,
   },
-  category: {
-    type: 'string',
+  categoryRef: {
+    type: 'async',
+    entity: 'category',
+    displayLabels: ['name'],
+    outputValue: '_id',
+    label: 'Category',
   },
-  subCategory: {
-    type: 'string',
+  subCategoryRef: {
+    type: 'async',
+    entity: 'subcategory',
+    displayLabels: ['name'],
+    outputValue: '_id',
+    label: 'Sub Category',
   },
   description: {
     type: 'textarea',

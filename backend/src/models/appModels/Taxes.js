@@ -9,6 +9,11 @@ const taxesSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  company: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Company',
+    autopopulate: true,
+  },
   taxName: {
     type: String,
     required: true,
@@ -32,5 +37,7 @@ const taxesSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+taxesSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model('Taxes', taxesSchema);

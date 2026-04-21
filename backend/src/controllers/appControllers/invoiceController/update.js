@@ -49,17 +49,21 @@ const update = async (req, res) => {
   //Calculate the items array with subTotal, total, taxTotal
   resolvedItems.map((item) => {
     const safePrice = Number(item?.price || 0);
-    let total = calculate.multiply(item['quantity'], safePrice);
+    let lineTotal = calculate.multiply(item['quantity'], safePrice);
     //sub total
-    subTotal = calculate.add(subTotal, total);
+    subTotal = calculate.add(subTotal, lineTotal);
     //item total
     item['price'] = safePrice;
-    item['total'] = total;
+    item['total'] = lineTotal;
   });
-  taxTotal = calculate.multiply(subTotal, taxRate / 100);
-  total = calculate.add(subTotal, taxTotal);
+
+  // Apply discount before tax calculation
+  const discountedSubTotal = calculate.sub(subTotal, discount);
+  taxTotal = calculate.multiply(discountedSubTotal, taxRate / 100);
+  total = calculate.add(discountedSubTotal, taxTotal);
 
   body['subTotal'] = subTotal;
+  body['discountTotal'] = discount;
   body['taxTotal'] = taxTotal;
   body['total'] = total;
   body['items'] = resolvedItems;
@@ -71,7 +75,7 @@ const update = async (req, res) => {
   // Find document by id and updates with the required fields
 
   let paymentStatus =
-    calculate.sub(total, discount) === credit ? 'paid' : credit > 0 ? 'partially' : 'unpaid';
+    total === credit ? 'paid' : credit > 0 ? 'partially' : 'unpaid';
   body['paymentStatus'] = paymentStatus;
 
   const result = await Model.findOneAndUpdate({ _id: req.params.id, removed: false }, body, {

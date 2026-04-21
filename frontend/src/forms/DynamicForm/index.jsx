@@ -17,6 +17,12 @@ export default function DynamicForm({ fields, isUpdateForm = false }) {
   );
   const feedback = Form.useWatch(feedbackFieldKey, form);
 
+  // Debug logging
+  console.log('DynamicForm - fields:', Object.keys(fields));
+  console.log('DynamicForm - isUpdateForm:', isUpdateForm);
+  console.log('DynamicForm - feedbackFieldKey:', feedbackFieldKey);
+  console.log('DynamicForm - feedback value:', feedback);
+
   return (
     <div>
       {Object.keys(fields).map((key) => {

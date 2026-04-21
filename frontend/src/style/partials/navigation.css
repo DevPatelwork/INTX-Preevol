@@ -146,6 +146,7 @@
 /* === SUBMENU STYLES === */
 .navigationMenu .ant-menu-submenu .ant-menu-sub {
   background: transparent !important;
+  border-radius: var(--radius-xl);
 }
 
 .navigationMenu .ant-menu-submenu .ant-menu-sub .ant-menu-item {
@@ -153,6 +154,7 @@
   height: 40px !important;
   line-height: 40px !important;
   margin-block: 4px !important;
+  border-radius: var(--radius-xl);
 }
 
 .navigationMenu .ant-menu-submenu-arrow {

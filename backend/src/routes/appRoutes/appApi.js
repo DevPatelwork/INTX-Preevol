@@ -47,4 +47,12 @@ routesList.forEach(({ entity, controllerName }) => {
   routerApp(entity, controller);
 });
 
+// Compliance routes for E-Invoice and E-Way Bill
+const complianceApi = require('./complianceApi');
+router.use('/compliance', complianceApi);
+
+// Report routes
+const reportApi = require('./reportApi');
+router.use('/reports', reportApi);
+
 module.exports = router;

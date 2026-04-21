@@ -32,22 +32,26 @@ const create = async (req, res) => {
   //Calculate the items array with subTotal, total, taxTotal
   resolvedItems.map((item) => {
     const safePrice = Number(item?.price || 0);
-    let total = calculate.multiply(item['quantity'], safePrice);
+    let lineTotal = calculate.multiply(item['quantity'], safePrice);
     //sub total
-    subTotal = calculate.add(subTotal, total);
+    subTotal = calculate.add(subTotal, lineTotal);
     //item total
     item['price'] = safePrice;
-    item['total'] = total;
+    item['total'] = lineTotal;
   });
-  taxTotal = calculate.multiply(subTotal, taxRate / 100);
-  total = calculate.add(subTotal, taxTotal);
+
+  // Apply discount before tax calculation
+  const discountedSubTotal = calculate.sub(subTotal, discount);
+  taxTotal = calculate.multiply(discountedSubTotal, taxRate / 100);
+  total = calculate.add(discountedSubTotal, taxTotal);
 
   body['subTotal'] = subTotal;
+  body['discountTotal'] = discount;
   body['taxTotal'] = taxTotal;
   body['total'] = total;
   body['items'] = resolvedItems;
 
-  let paymentStatus = calculate.sub(total, discount) === 0 ? 'paid' : 'unpaid';
+  let paymentStatus = total === 0 ? 'paid' : 'unpaid';
 
   body['paymentStatus'] = paymentStatus;
   body['createdBy'] = req.admin._id;

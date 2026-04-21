@@ -1,4 +1,5 @@
 export const fields = {
+  enabled: { type: 'boolean', label: 'Enabled', defaultValue: true },
   company: { type: 'async', entity: 'company', displayLabels: ['name'], outputValue: '_id', required: true, disableForTable: true },
   companyName: { type: 'string', label: 'company', dataIndex: ['company', 'name'], disableForForm: true },
   category: { type: 'async', entity: 'category', displayLabels: ['name'], outputValue: '_id', disableForTable: true },
@@ -11,4 +12,7 @@ export const fields = {
   machineNo: { type: 'string' },
   price: { type: 'number' },
   fullProductName: { type: 'string' },
+  legacyPOProductId: { type: 'number', label: 'Legacy PO Product ID' },
+  categoryId: { type: 'number', label: 'Category ID' },
+  subCategoryId: { type: 'number', label: 'SubCategory ID' },
 };

@@ -20,16 +20,19 @@ const normalizeBody = async (req, body) => {
     item.total = lineTotal;
   });
 
+  const safeDiscount = Number(discount || 0);
+  const discountedSubTotal = calculate.sub(subTotal, safeDiscount);
   const safeTaxRate = Number(taxRate || 0);
-  const taxTotal = calculate.multiply(subTotal, safeTaxRate / 100);
-  const total = calculate.add(subTotal, taxTotal);
-  const paymentStatus = calculate.sub(total, Number(discount || 0)) === 0 ? 'paid' : 'unpaid';
+  const taxTotal = calculate.multiply(discountedSubTotal, safeTaxRate / 100);
+  const total = calculate.add(discountedSubTotal, taxTotal);
+  const paymentStatus = total === 0 ? 'paid' : 'unpaid';
 
   return {
     ...input,
     company: resolveCompanyId(req) || input.company,
     items: resolvedItems,
     subTotal,
+    discountTotal: Number(discount || 0),
     taxTotal,
     total,
     paymentStatus,

@@ -13,10 +13,11 @@ const resolveCompanyId = (req) => {
 
 const appendAudit = (req, payload = {}) => {
   const name = req.admin?.name || req.admin?.email || '';
+  const adminId = req.admin?._id || null;
   return {
     ...payload,
     updatedBy: name,
-    ...(payload.createdBy ? {} : { createdBy: name }),
+    ...(payload.createdBy ? {} : { createdBy: adminId }),
     updated: new Date(),
   };
 };

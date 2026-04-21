@@ -159,6 +159,50 @@ const invoiceSchema = new mongoose.Schema({
   pdf: {
     type: String,
   },
+  // E-Invoice (IRN) Compliance Fields
+  irn: {
+    type: String,
+    index: true,
+  },
+  irnQrCode: {
+    type: String,
+  },
+  irnAckNo: {
+    type: String,
+  },
+  irnAckDate: {
+    type: Date,
+  },
+  irnStatus: {
+    type: String,
+    enum: ['PENDING', 'ACTIVE', 'CANCELLED'],
+    default: 'PENDING',
+  },
+  irnCancelDate: {
+    type: Date,
+  },
+  signedInvoice: {
+    type: String,
+  },
+  // E-Way Bill Fields
+  ewbNo: {
+    type: String,
+    index: true,
+  },
+  ewbDate: {
+    type: Date,
+  },
+  ewbValidUpto: {
+    type: Date,
+  },
+  ewbStatus: {
+    type: String,
+    enum: ['PENDING', 'ACTIVE', 'CANCELLED', 'EXPIRED'],
+    default: 'PENDING',
+  },
+  ewbCancelDate: {
+    type: Date,
+  },
   files: [
     {
       id: String,

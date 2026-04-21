@@ -1,4 +1,5 @@
 export const fields = {
+  enabled: { type: 'boolean', label: 'Enabled', defaultValue: true },
   company: { type: 'async', entity: 'company', displayLabels: ['name'], outputValue: '_id', required: true, disableForTable: true },
   companyName: { type: 'string', label: 'company', dataIndex: ['company', 'name'], disableForForm: true },
   type: { type: 'async', entity: 'type', displayLabels: ['typeName'], outputValue: '_id', disableForTable: true },
@@ -19,4 +20,11 @@ export const fields = {
   avgPricePerUnit: { type: 'number' },
   openingQty: { type: 'number' },
   reOrderLevel: { type: 'number' },
+  legacyGoodsId: { type: 'number', label: 'Legacy Goods ID' },
+  stockCategoryId: { type: 'number', label: 'Stock Category ID' },
+  stockSubCategoryId: { type: 'number', label: 'Stock SubCategory ID' },
+  closingQty: { type: 'number', label: 'Closing Qty' },
+  closingStockVal: { type: 'number', label: 'Closing Stock Value' },
+  fullGoodsName: { type: 'string', label: 'Full Goods Name' },
+  lastUpdatedText: { type: 'string', label: 'Last Updated Text' },
 };
