@@ -5,12 +5,53 @@ const schema = new mongoose.Schema({
   enabled: { type: Boolean, default: true },
   legacyBankId: { type: Number, sparse: true, index: true },
   company: { type: mongoose.Schema.ObjectId, ref: 'Company', autopopulate: true, index: true },
-  bankName: { type: String, required: true, trim: true },
-  branchName: { type: String, default: '' },
-  accountNo: { type: String, default: '' },
-  micrCode: { type: Number, default: null, index: true },
-  ifscCode: { type: String, default: '' },
-  swiftCode: { type: String, default: '', index: true },
+  
+  // Bank Information
+  bankName: { 
+    type: String, 
+    required: true, 
+    trim: true 
+  },
+  
+  // Account Information
+  accountName: { 
+    type: String, 
+    default: '',
+    trim: true 
+  },
+  accountNo: { 
+    type: String, 
+    default: '' 
+  },
+  
+  // Branch Information
+  branch: { 
+    type: String, 
+    default: '' 
+  },
+  branchName: { 
+    type: String, 
+    default: '' 
+  },
+  address: { 
+    type: String, 
+    default: '' 
+  },
+  
+  // Banking Codes
+  ifscCode: { 
+    type: String, 
+    default: '' 
+  },
+  micrCode: { 
+    type: String, 
+    default: '' 
+  },
+  swiftCode: { 
+    type: String, 
+    default: '' 
+  },
+  
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
 });

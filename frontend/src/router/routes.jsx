@@ -45,7 +45,15 @@ const Settings = lazy(() => import('@/pages/Settings/Settings'));
 
 const Profile = lazy(() => import('@/pages/Profile'));
 
+const User = lazy(() => import('@/pages/User'));
+const Client = lazy(() => import('@/pages/Client'));
+
 const About = lazy(() => import('@/pages/About'));
+
+// Report Pages
+const SalesReport = lazy(() => import('@/pages/Reports/SalesReport'));
+const ServiceReport = lazy(() => import('@/pages/Reports/ServiceReport'));
+const StockReport = lazy(() => import('@/pages/Reports/StockReport'));
 
 let routes = {
   expense: [],
@@ -308,10 +316,32 @@ let routes = {
       path: '/vendor',
       element: <Vendor />,
     },
+    {
+      path: '/client',
+      element: <Client />,
+    },
+    
+    // Report Routes
+    {
+      path: '/salesreport',
+      element: <SalesReport />,
+    },
+    {
+      path: '/servicereport',
+      element: <ServiceReport />,
+    },
+    {
+      path: '/stockreport',
+      element: <StockReport />,
+    },
 
     {
       path: '/profile',
       element: <Profile />,
+    },
+    {
+      path: '/user',
+      element: <User />,
     },
     {
       path: '*',

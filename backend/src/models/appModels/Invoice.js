@@ -7,53 +7,151 @@ const invoiceSchema = new mongoose.Schema({
   },
 
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'Admin', required: true },
-  number: {
-    type: Number,
-    required: true,
-  },
-  year: {
-    type: Number,
-    required: true,
-  },
-  content: String,
-  recurring: {
+  
+  // Invoice Type and Tax Configuration
+  invoiceType: {
     type: String,
-    enum: ['daily', 'weekly', 'monthly', 'annually', 'quarter'],
+    required: true,
+    enum: ['Sales Invoice', 'Service Invoice', 'SEZ Sales Invoice', 'SEZ Service Invoice', 'Export Sales Invoice', 'Export Service Invoice'],
+  },
+  taxType: {
+    type: String,
+    required: true,
+    enum: ['Local State', 'Inter-State'],
+  },
+  lutOption: {
+    type: String,
+    enum: ['With LUT', 'Without LUT', ''],
+    default: '',
+  },
+  
+  // Invoice Header Fields
+  number: {
+    type: String,
+    required: true,
+    index: true,
   },
   date: {
     type: Date,
     required: true,
   },
-  expiredDate: {
+  challanNo: {
+    type: String,
+    default: '',
+  },
+  challanDate: {
     type: Date,
-    required: true,
   },
-  client: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Client',
-    required: true,
-    autopopulate: true,
+  partyDcNo: {
+    type: String,
+    default: '',
   },
+  partyDcDate: {
+    type: Date,
+  },
+  poReference: {
+    type: String,
+    default: '',
+  },
+  poDate: {
+    type: Date,
+  },
+  arnNo: {
+    type: String,
+    default: '',
+  },
+  arnDate: {
+    type: Date,
+  },
+  transportationMode: {
+    type: String,
+    default: '',
+  },
+  modelNo: {
+    type: String,
+    default: '',
+  },
+  againstForm: {
+    type: String,
+    default: '',
+  },
+  
+  // Company Reference
   company: {
     type: mongoose.Schema.ObjectId,
     ref: 'Company',
     autopopulate: true,
     index: true,
   },
-  converted: {
-    from: {
-      type: String,
-      enum: ['quote', 'offer'],
-    },
-    offer: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Offer',
-    },
-    quote: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Quote',
-    },
+  
+  // Receiver (Bill To) Section
+  receiver: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Client',
+    autopopulate: true,
+    required: true,
   },
+  receiverName: {
+    type: String,
+    required: true,
+  },
+  receiverAddress: {
+    type: String,
+    required: true,
+  },
+  receiverGstin: {
+    type: String,
+    default: '',
+  },
+  receiverState: {
+    type: String,
+    default: '',
+  },
+  receiverStateCode: {
+    type: String,
+    default: '',
+  },
+  receiverPanNo: {
+    type: String,
+    default: '',
+  },
+  
+  // Consignee (Ship To) Section
+  consignee: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Client',
+    autopopulate: true,
+  },
+  consigneeName: {
+    type: String,
+    default: '',
+  },
+  consigneeAddress: {
+    type: String,
+    default: '',
+  },
+  consigneeGstin: {
+    type: String,
+    default: '',
+  },
+  consigneeState: {
+    type: String,
+    default: '',
+  },
+  consigneeStateCode: {
+    type: String,
+    default: '',
+  },
+  consigneePanNo: {
+    type: String,
+    default: '',
+  },
+  sameAsReceiver: {
+    type: Boolean,
+    default: false,
+  },
+  
+  // Line Items
   items: [
     {
       product: {
@@ -67,65 +165,167 @@ const invoiceSchema = new mongoose.Schema({
       },
       description: {
         type: String,
+        default: '',
+      },
+      hsnSac: {
+        type: String,
+        default: '',
+      },
+      uom: {
+        type: String,
+        default: '',
       },
       quantity: {
         type: Number,
         default: 1,
         required: true,
       },
-      price: {
+      rate: {
         type: Number,
         required: true,
       },
-      // discount: {
-      //   type: Number,
-      //   default: 0,
-      // },
-      // taxRate: {
-      //   type: Number,
-      //   default: 0,
-      // },
-      // subTotal: {
-      //   type: Number,
-      //   default: 0,
-      // },
-      // taxTotal: {
-      //   type: Number,
-      //   default: 0,
-      // },
+      isService: {
+        type: Boolean,
+        default: false,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      discountPercent: {
+        type: Number,
+        default: 0,
+      },
+      discountAmount: {
+        type: Number,
+        default: 0,
+      },
+      taxableValue: {
+        type: Number,
+        required: true,
+      },
+      cgstRate: {
+        type: Number,
+        default: 0,
+      },
+      cgstAmount: {
+        type: Number,
+        default: 0,
+      },
+      sgstRate: {
+        type: Number,
+        default: 0,
+      },
+      sgstAmount: {
+        type: Number,
+        default: 0,
+      },
+      igstRate: {
+        type: Number,
+        default: 0,
+      },
+      igstAmount: {
+        type: Number,
+        default: 0,
+      },
       total: {
         type: Number,
         required: true,
       },
     },
   ],
-  taxRate: {
+  
+  // Footer Section - Amounts
+  totalAmountBeforeTax: {
     type: Number,
     default: 0,
   },
-  subTotal: {
+  
+  // Packing Charges
+  packingCharges: {
     type: Number,
     default: 0,
   },
-  taxTotal: {
+  packingCgstRate: {
     type: Number,
     default: 0,
   },
-  total: {
+  packingCgstAmount: {
     type: Number,
     default: 0,
   },
+  packingSgstRate: {
+    type: Number,
+    default: 0,
+  },
+  packingSgstAmount: {
+    type: Number,
+    default: 0,
+  },
+  packingIgstRate: {
+    type: Number,
+    default: 0,
+  },
+  packingIgstAmount: {
+    type: Number,
+    default: 0,
+  },
+  
+  // Tax Totals
+  cgstTotal: {
+    type: Number,
+    default: 0,
+  },
+  sgstTotal: {
+    type: Number,
+    default: 0,
+  },
+  igstTotal: {
+    type: Number,
+    default: 0,
+  },
+  totalGstTax: {
+    type: Number,
+    default: 0,
+  },
+  
+  // Grand Totals
+  totalAmountAfterTax: {
+    type: Number,
+    default: 0,
+  },
+  gstReverseCharge: {
+    type: Boolean,
+    default: false,
+  },
+  roundOff: {
+    type: Number,
+    default: 0,
+  },
+  grandTotal: {
+    type: Number,
+    default: 0,
+  },
+  totalInWords: {
+    type: String,
+    default: '',
+  },
+  taxInWords: {
+    type: String,
+    default: '',
+  },
+  remarks: {
+    type: String,
+    default: '',
+  },
+  
+  // Payment & Status
   currency: {
     type: String,
-    default: 'NA',
+    default: 'INR',
     uppercase: true,
-    required: true,
   },
   credit: {
-    type: Number,
-    default: 0,
-  },
-  discount: {
     type: Number,
     default: 0,
   },
@@ -144,21 +344,12 @@ const invoiceSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  approved: {
-    type: Boolean,
-    default: false,
-  },
-  notes: {
-    type: String,
-  },
   status: {
     type: String,
     enum: ['draft', 'pending', 'sent', 'refunded', 'cancelled', 'on hold'],
     default: 'draft',
   },
-  pdf: {
-    type: String,
-  },
+  
   // E-Invoice (IRN) Compliance Fields
   irn: {
     type: String,
@@ -184,6 +375,7 @@ const invoiceSchema = new mongoose.Schema({
   signedInvoice: {
     type: String,
   },
+  
   // E-Way Bill Fields
   ewbNo: {
     type: String,
@@ -203,6 +395,51 @@ const invoiceSchema = new mongoose.Schema({
   ewbCancelDate: {
     type: Date,
   },
+  
+  // E-Way Bill Extended Fields
+  transporterId: {
+    type: String,
+    default: '',
+  },
+  transporterName: {
+    type: String,
+    default: '',
+  },
+  transportMode: {
+    type: String,
+    enum: ['Road', 'Rail', 'Air', 'Ship', ''],
+    default: '',
+  },
+  transportDistance: {
+    type: Number,
+    default: 0,
+  },
+  vehicleNo: {
+    type: String,
+    default: '',
+  },
+  vehicleType: {
+    type: String,
+    enum: ['Regular', 'Over Dimensional Cargo', ''],
+    default: '',
+  },
+  cewbNo: {
+    type: String,
+    default: '',
+  },
+  placeOfDelivery: {
+    type: String,
+    default: '',
+  },
+  shippingPin: {
+    type: String,
+    default: '',
+  },
+  
+  // Files & Documents
+  pdf: {
+    type: String,
+  },
   files: [
     {
       id: String,
@@ -215,6 +452,19 @@ const invoiceSchema = new mongoose.Schema({
       },
     },
   ],
+  
+  // Legacy fields for backward compatibility
+  year: {
+    type: Number,
+  },
+  content: String,
+  client: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Client',
+    autopopulate: true,
+  },
+  
+  // Timestamps
   updated: {
     type: Date,
     default: Date.now,

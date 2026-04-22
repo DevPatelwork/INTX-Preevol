@@ -21,11 +21,20 @@ const schema = new mongoose.Schema({
     index: true,
     autopopulate: true,
   },
+  
+  // Product Name
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  fullProductName: {
+    type: String,
+    default: '',
+    trim: true,
+  },
+  
+  // Category References
   category: {
     type: String,
     default: '',
@@ -56,15 +65,19 @@ const schema = new mongoose.Schema({
     default: null,
     index: true,
   },
+  
+  // Product Details
   description: {
     type: String,
     default: '',
   },
+  
+  // Tax Information
   hsnOrSac: {
     type: String,
     default: '',
   },
-  uom: {
+  hsnSac: {
     type: String,
     default: '',
   },
@@ -72,14 +85,35 @@ const schema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  
+  // Unit of Measure
+  uom: {
+    type: String,
+    default: '',
+  },
+  
+  // Pricing
   rate: {
     type: Number,
     default: 0,
   },
+  price: {
+    type: Number,
+    default: 0,
+  },
+  
+  // Product Type
   isService: {
     type: Boolean,
     default: false,
   },
+  
+  // Additional Fields
+  machineNo: {
+    type: String,
+    default: '',
+  },
+  
   createdBy: {
     type: String,
     default: '',

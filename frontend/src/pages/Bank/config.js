@@ -10,14 +10,53 @@ export const fields = {
   },
   companyName: {
     type: 'string',
-    label: 'company',
+    label: 'Company',
     dataIndex: ['company', 'name'],
     disableForForm: true,
   },
-  bankName: { type: 'string', required: true },
-  branchName: { type: 'string' },
-  accountNo: { type: 'string' },
-  micrCode: { type: 'number' },
-  ifscCode: { type: 'string' },
-  swiftCode: { type: 'string' },
+  
+  // Bank Information
+  bankName: { 
+    type: 'string', 
+    label: 'Bank Name',
+    required: true 
+  },
+  
+  // Account Information
+  accountName: { 
+    type: 'string',
+    label: 'Account Name (Account Holder)',
+  },
+  accountNo: { 
+    type: 'string',
+    label: 'Account Number',
+  },
+  
+  // Branch Information
+  branch: { 
+    type: 'string',
+    label: 'Branch',
+  },
+  branchName: { 
+    type: 'string',
+    label: 'Branch Name (Alternate)',
+  },
+  address: { 
+    type: 'textarea',
+    label: 'Bank Address',
+  },
+  
+  // Banking Codes
+  ifscCode: { 
+    type: 'string',
+    label: 'IFSC Code',
+  },
+  micrCode: { 
+    type: 'string',
+    label: 'MICR Code',
+  },
+  swiftCode: { 
+    type: 'string',
+    label: 'SWIFT Code',
+  },
 };

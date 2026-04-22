@@ -6,29 +6,18 @@ export const fields = {
   },
   name: {
     type: 'string',
-    label: 'Name',
+    label: 'Company Name',
     required: true,
   },
-  financialYear: {
-    type: 'select',
-    label: 'Financial Year',
-    required: true,
-    options: [
-      { value: '2023-24', label: '2023-24' },
-      { value: '2024-25', label: '2024-25' },
-      { value: '2025-26', label: '2025-26' },
-      { value: '2026-27', label: '2026-27' },
-      { value: '2027-28', label: '2027-28' },
-      { value: '2028-29', label: '2028-29' },
-    ],
+  
+  // Address Section
+  address: {
+    type: 'textarea',
+    label: 'Address',
   },
-  gstin: {
+  city: {
     type: 'string',
-    label: 'GSTIN',
-  },
-  panNo: {
-    type: 'string',
-    label: 'PAN No',
+    label: 'City',
   },
   state: {
     type: 'string',
@@ -38,13 +27,19 @@ export const fields = {
     type: 'string',
     label: 'State Code',
   },
-  address: {
-    type: 'textarea',
-    label: 'Address',
-  },
   pin: {
     type: 'string',
     label: 'PIN Code',
+  },
+  
+  // Contact Information
+  contact: {
+    type: 'phone',
+    label: 'Contact Number',
+  },
+  email: {
+    type: 'email',
+    label: 'Email',
   },
   phone1: {
     type: 'phone',
@@ -66,16 +61,79 @@ export const fields = {
     type: 'string',
     label: 'Website',
   },
-  supplyFrom: {
+  
+  // Tax Registration
+  gstin: {
     type: 'string',
-    label: 'Supply From',
+    label: 'GSTIN',
+  },
+  panNo: {
+    type: 'string',
+    label: 'PAN No',
+  },
+  tanNo: {
+    type: 'string',
+    label: 'TAN No',
+  },
+  cinNo: {
+    type: 'string',
+    label: 'CIN No',
+  },
+  lutNo: {
+    type: 'string',
+    label: 'LUT No',
+  },
+  
+  // Financial Information
+  financialYear: {
+    type: 'select',
+    label: 'Financial Year',
+    options: [
+      { value: '2023-24', label: '2023-24' },
+      { value: '2024-25', label: '2024-25' },
+      { value: '2025-26', label: '2025-26' },
+      { value: '2026-27', label: '2026-27' },
+      { value: '2027-28', label: '2027-28' },
+      { value: '2028-29', label: '2028-29' },
+    ],
   },
   startDate: {
     type: 'date',
-    label: 'Start Date',
+    label: 'Financial Year Start',
   },
   endDate: {
     type: 'date',
-    label: 'End Date',
+    label: 'Financial Year End',
+  },
+  
+  // Bank Details
+  bankName: {
+    type: 'string',
+    label: 'Bank Name',
+  },
+  accountNo: {
+    type: 'string',
+    label: 'Account No',
+  },
+  ifscCode: {
+    type: 'string',
+    label: 'IFSC Code',
+  },
+  branch: {
+    type: 'string',
+    label: 'Branch',
+  },
+  
+  // Terms & Conditions
+  termsAndConditions: {
+    type: 'textarea',
+    label: 'Terms & Conditions',
+    rows: 4,
+  },
+  
+  // Other
+  supplyFrom: {
+    type: 'string',
+    label: 'Supply From',
   },
 };

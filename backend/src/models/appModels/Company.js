@@ -14,12 +14,20 @@ const schema = new mongoose.Schema({
     sparse: true,
     index: true,
   },
+  
+  // Company Basic Information
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  
+  // Address Information
   address: {
+    type: String,
+    default: '',
+  },
+  city: {
     type: String,
     default: '',
   },
@@ -31,17 +39,17 @@ const schema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  gstin: {
+  pin: {
     type: String,
     default: '',
-    uppercase: true,
   },
-  panNo: {
+  
+  // Contact Information
+  contact: {
     type: String,
     default: '',
-    uppercase: true,
   },
-  financialYear: {
+  email: {
     type: String,
     default: '',
   },
@@ -65,11 +73,35 @@ const schema = new mongoose.Schema({
     type: String,
     default: '',
   },
-  supplyFrom: {
+  
+  // Tax Registration
+  gstin: {
+    type: String,
+    default: '',
+    uppercase: true,
+  },
+  panNo: {
+    type: String,
+    default: '',
+    uppercase: true,
+  },
+  tanNo: {
+    type: String,
+    default: '',
+    uppercase: true,
+  },
+  cinNo: {
+    type: String,
+    default: '',
+    uppercase: true,
+  },
+  lutNo: {
     type: String,
     default: '',
   },
-  pin: {
+  
+  // Financial Information
+  financialYear: {
     type: String,
     default: '',
   },
@@ -79,20 +111,60 @@ const schema = new mongoose.Schema({
   endDate: {
     type: Date,
   },
+  
+  // Bank Details (Primary)
+  bankName: {
+    type: String,
+    default: '',
+  },
+  accountNo: {
+    type: String,
+    default: '',
+  },
+  ifscCode: {
+    type: String,
+    default: '',
+  },
+  branch: {
+    type: String,
+    default: '',
+  },
+  
+  // Terms & Conditions
+  termsAndConditions: {
+    type: String,
+    default: '',
+  },
+  
+  // Document Prefixes
   prefix: {
     invoice: { type: String, default: 'INV' },
     serviceInvoice: { type: String, default: 'SINV' },
     quotation: { type: String, default: 'QUO' },
+    proformaInvoice: { type: String, default: 'PI' },
     purchaseOrder: { type: String, default: 'PO' },
     workOrder: { type: String, default: 'WO' },
+    proposal: { type: String, default: 'PROP' },
   },
+  
+  // Document Counters
   counters: {
     invoice: { type: Number, default: 0 },
     serviceInvoice: { type: Number, default: 0 },
     quotation: { type: Number, default: 0 },
+    proformaInvoice: { type: Number, default: 0 },
     purchaseOrder: { type: Number, default: 0 },
     workOrder: { type: Number, default: 0 },
+    proposal: { type: Number, default: 0 },
   },
+  
+  // Supply Location
+  supplyFrom: {
+    type: String,
+    default: '',
+  },
+  
+  // Audit Fields
   createdBy: {
     type: String,
     default: '',

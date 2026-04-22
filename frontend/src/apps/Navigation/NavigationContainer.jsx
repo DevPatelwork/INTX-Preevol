@@ -36,6 +36,7 @@ import {
   LogoutOutlined,
   BankOutlined,
   CalendarOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 
 const { Sider } = Layout;
@@ -65,82 +66,23 @@ function Sidebar({ collapsible, isMobile = false }) {
       icon: <DashboardOutlined />,
       label: <Link to={'/dashboard'}>{translate('dashboard')}</Link>,
     },
+    
+    // MASTER DATA MENU
     {
-      key: 'documents',
-      icon: <FileTextOutlined />,
-      label: 'Documents',
+      key: 'masterData',
+      icon: <AppstoreOutlined />,
+      label: 'Master Data',
       children: [
         {
-          key: 'quotation',
-          icon: <SolutionOutlined />,
-          label: <Link to={'/quotation'}>Quotation</Link>,
+          key: 'client',
+          icon: <TeamOutlined />,
+          label: <Link to={'/client'}>Party (Customers)</Link>,
         },
-        {
-          key: 'proformainvoice',
-          icon: <FileSyncOutlined />,
-          label: <Link to={'/proformainvoice'}>Proforma Invoice</Link>,
-        },
-        {
-          key: 'invoice',
-          icon: <ContainerOutlined />,
-          label: <Link to={'/invoice'}>Client Invoice</Link>,
-        },
-        {
-          key: 'serviceinvoice',
-          icon: <FileSyncOutlined />,
-          label: <Link to={'/serviceinvoice'}>Service Invoice</Link>,
-        },
-        {
-          key: 'proformaserviceinvoice',
-          icon: <FileSyncOutlined />,
-          label: <Link to={'/proformaserviceinvoice'}>Proforma Service</Link>,
-        },
-      ],
-    },
-    {
-      key: 'sales',
-      icon: <FundOutlined />,
-      label: 'Sales & Reports',
-      children: [
-        {
-          key: 'proposalhistory',
-          icon: <BarChartOutlined />,
-          label: <Link to={'/proposalhistory'}>Report</Link>,
-        },
-        {
-          key: 'customer',
-          icon: <CustomerServiceOutlined />,
-          label: <Link to={'/customer'}>{translate('clients')}</Link>,
-        },
-      ],
-    },
-    {
-      key: 'purchase',
-      icon: <ShoppingOutlined />,
-      label: 'Purchase',
-      children: [
         {
           key: 'vendor',
           icon: <TeamOutlined />,
-          label: <Link to={'/vendor'}>Vendor</Link>,
+          label: <Link to={'/vendor'}>Vendor (Suppliers)</Link>,
         },
-        {
-          key: 'workorder',
-          icon: <FileSyncOutlined />,
-          label: <Link to={'/workorder'}>Work Order</Link>,
-        },
-        {
-          key: 'purchaseorder',
-          icon: <FileSyncOutlined />,
-          label: <Link to={'/purchaseorder'}>Purchase Order</Link>,
-        },
-      ],
-    },
-    {
-      key: 'masters',
-      icon: <AppstoreOutlined />,
-      label: 'Masters',
-      children: [
         {
           key: 'category',
           icon: <ClusterOutlined />,
@@ -157,26 +99,39 @@ function Sidebar({ collapsible, isMobile = false }) {
           label: <Link to={'/product'}>Product</Link>,
         },
         {
+          key: 'poproduct',
+          icon: <ShoppingOutlined />,
+          label: <Link to={'/poproduct'}>Purchase Product</Link>,
+        },
+        {
+          key: 'goods',
+          icon: <DatabaseOutlined />,
+          label: <Link to={'/goods'}>Goods / Inventory</Link>,
+        },
+        {
+          key: 'bank',
+          icon: <BankOutlined />,
+          label: <Link to={'/bank'}>Bank Details</Link>,
+        },
+        {
+          key: 'user',
+          icon: <UserOutlined />,
+          label: <Link to={'/user'}>User Management</Link>,
+        },
+        {
           key: 'company',
           icon: <ShopOutlined />,
           label: <Link to={'/company'}>Company Profile</Link>,
         },
-      ],
-    },
-    {
-      key: 'inventory',
-      icon: <DatabaseOutlined />,
-      label: 'Inventory',
-      children: [
         {
           key: 'type',
           icon: <BuildOutlined />,
-          label: <Link to={'/type'}>Type</Link>,
+          label: <Link to={'/type'}>Type Master</Link>,
         },
         {
           key: 'model',
           icon: <ToolOutlined />,
-          label: <Link to={'/model'}>Model</Link>,
+          label: <Link to={'/model'}>Model Master</Link>,
         },
         {
           key: 'plungerdia',
@@ -188,23 +143,88 @@ function Sidebar({ collapsible, isMobile = false }) {
           icon: <ContainerOutlined />,
           label: <Link to={'/moc'}>MOC</Link>,
         },
+      ],
+    },
+    
+    // TRANSACTION MENU
+    {
+      key: 'transaction',
+      icon: <FileTextOutlined />,
+      label: 'Transaction',
+      children: [
         {
-          key: 'goods',
+          key: 'invoice',
+          icon: <ContainerOutlined />,
+          label: <Link to={'/invoice'}>Invoice</Link>,
+        },
+        {
+          key: 'serviceinvoice',
+          icon: <FileSyncOutlined />,
+          label: <Link to={'/serviceinvoice'}>Service Invoice</Link>,
+        },
+        {
+          key: 'proformainvoice',
+          icon: <SolutionOutlined />,
+          label: <Link to={'/proformainvoice'}>Proforma Invoice</Link>,
+        },
+        {
+          key: 'proformaserviceinvoice',
+          icon: <SolutionOutlined />,
+          label: <Link to={'/proformaserviceinvoice'}>Proforma Service</Link>,
+        },
+        {
+          key: 'quotation',
+          icon: <FileTextOutlined />,
+          label: <Link to={'/quotation'}>Quotation / Proposal</Link>,
+        },
+        {
+          key: 'purchaseorder',
           icon: <ShoppingOutlined />,
-          label: <Link to={'/goods'}>Goods</Link>,
+          label: <Link to={'/purchaseorder'}>Purchase Order</Link>,
+        },
+        {
+          key: 'workorder',
+          icon: <FileSyncOutlined />,
+          label: <Link to={'/workorder'}>Work Order</Link>,
         },
         {
           key: 'goodsinventory',
           icon: <DatabaseOutlined />,
-          label: <Link to={'/goodsinventory'}>Goods Inventory</Link>,
-        },
-        {
-          key: 'poproduct',
-          icon: <ContainerOutlined />,
-          label: <Link to={'/poproduct'}>PO Product</Link>,
+          label: <Link to={'/goodsinventory'}>Inventory Management</Link>,
         },
       ],
     },
+    
+    // REPORT MENU
+    {
+      key: 'reports',
+      icon: <FundOutlined />,
+      label: 'Reports',
+      children: [
+        {
+          key: 'salesreport',
+          icon: <BarChartOutlined />,
+          label: <Link to={'/salesreport'}>Sales Report</Link>,
+        },
+        {
+          key: 'servicereport',
+          icon: <BarChartOutlined />,
+          label: <Link to={'/servicereport'}>Service Report</Link>,
+        },
+        {
+          key: 'stockreport',
+          icon: <DatabaseOutlined />,
+          label: <Link to={'/stockreport'}>Stock Report</Link>,
+        },
+        {
+          key: 'proposalhistory',
+          icon: <FileTextOutlined />,
+          label: <Link to={'/proposalhistory'}>Proposal History</Link>,
+        },
+      ],
+    },
+    
+    // FINANCE MENU
     {
       key: 'finance',
       icon: <DollarOutlined />,
@@ -216,16 +236,6 @@ function Sidebar({ collapsible, isMobile = false }) {
           label: <Link to={'/payment'}>{translate('payments')}</Link>,
         },
         {
-          key: 'bank',
-          icon: <BankOutlined />,
-          label: <Link to={'/bank'}>Bank</Link>,
-        },
-        {
-          key: 'financialsettings',
-          icon: <CalendarOutlined />,
-          label: <Link to={'/financialsettings'}>Financial Year</Link>,
-        },
-        {
           key: 'paymentMode',
           label: <Link to={'/payment/mode'}>{translate('payments_mode')}</Link>,
           icon: <WalletOutlined />,
@@ -235,8 +245,15 @@ function Sidebar({ collapsible, isMobile = false }) {
           label: <Link to={'/taxes'}>{translate('taxes')}</Link>,
           icon: <ShopOutlined />,
         },
+        {
+          key: 'financialsettings',
+          icon: <CalendarOutlined />,
+          label: <Link to={'/financialsettings'}>Financial Year</Link>,
+        },
       ],
     },
+    
+    // SETTINGS MENU
     {
       key: 'settings',
       icon: <SettingOutlined />,

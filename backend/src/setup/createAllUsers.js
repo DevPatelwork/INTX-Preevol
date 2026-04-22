@@ -1,0 +1,200 @@
+require('dotenv').config({ path: '.env' });
+require('dotenv').config({ path: '.env.local' });
+const { generate: uniqueId } = require('shortid');
+const fs = require('fs');
+const path = require('path');
+
+const mongoose = require('mongoose');
+
+const usersToCreate = [
+  {
+    email: 'owner@erp.com',
+    name: 'Owner',
+    surname: 'User',
+    role: 'owner',
+    password: 'Owner@123456',
+  },
+  {
+    email: 'admin@erp.com',
+    name: 'Admin',
+    surname: 'User',
+    role: 'admin',
+    password: 'Admin@123456',
+  },
+  {
+    email: 'user@erp.com',
+    name: 'Regular',
+    surname: 'User',
+    role: 'user',
+    password: 'User@123456',
+  },
+  {
+    email: 'manager@erp.com',
+    name: 'Manager',
+    surname: 'User',
+    role: 'admin',
+    password: 'Manager@123456',
+  },
+  {
+    email: 'accountant@erp.com',
+    name: 'Accountant',
+    surname: 'User',
+    role: 'user',
+    password: 'Accountant@123456',
+  },
+];
+
+async function createAllUsers() {
+  try {
+    await mongoose.connect(process.env.DATABASE);
+    console.log('Connected to database');
+
+    const Admin = require('../models/coreModels/Admin');
+    const AdminPassword = require('../models/coreModels/AdminPassword');
+
+    const createdUsers = [];
+    const existingUsers = [];
+
+    for (const userData of usersToCreate) {
+      const existingUser = await Admin.findOne({ email: userData.email });
+      
+      if (existingUser) {
+        console.log(`⚠️  User already exists: ${userData.email}`);
+        existingUsers.push({
+          email: userData.email,
+          name: existingUser.name,
+          role: existingUser.role,
+          note: 'Already existed - password unchanged',
+        });
+        continue;
+      }
+
+      const newAdminPassword = new AdminPassword();
+      const salt = uniqueId();
+      const passwordHash = newAdminPassword.generateHash(salt, userData.password);
+
+      const newUser = {
+        email: userData.email,
+        name: userData.name,
+        surname: userData.surname,
+        enabled: true,
+        role: userData.role,
+      };
+
+      const result = await new Admin(newUser).save();
+
+      const AdminPasswordData = {
+        password: passwordHash,
+        emailVerified: true,
+        salt: salt,
+        user: result._id,
+      };
+
+      await new AdminPassword(AdminPasswordData).save();
+
+      console.log(`✅ Created user: ${userData.email} (${userData.role})`);
+      
+      createdUsers.push({
+        email: userData.email,
+        password: userData.password,
+        name: `${userData.name} ${userData.surname}`,
+        role: userData.role,
+      });
+    }
+
+    // Update the credentials file
+    const credentialsContent = generateCredentialsFile(createdUsers, existingUsers);
+    const credentialsPath = path.join(__dirname, '..', '..', '..', 'USER_CREDENTIALS.md');
+    fs.writeFileSync(credentialsPath, credentialsContent);
+    
+    console.log('\n=================================');
+    console.log('✅ ALL USERS PROCESSED');
+    console.log('=================================');
+    console.log(`New users created: ${createdUsers.length}`);
+    console.log(`Existing users: ${existingUsers.length}`);
+    console.log(`\nCredentials saved to: USER_CREDENTIALS.md`);
+    console.log('=================================');
+
+    process.exit(0);
+  } catch (e) {
+    console.log('\n🚫 Error! The Error info is below');
+    console.log(e);
+    process.exit(1);
+  }
+}
+
+function generateCredentialsFile(createdUsers, existingUsers) {
+  const now = new Date().toISOString();
+  
+  let content = `# Preevol ERP - User Credentials
+
+**Generated:** ${now}
+
+## User Roles Available
+- **owner** - Full system access, can manage companies and settings
+- **admin** - Can manage most data, limited system settings
+- **user** - Basic access, can view and create transactions
+
+---
+
+## ✅ Newly Created Users
+
+| Email | Password | Name | Role | Status |
+|-------|----------|------|------|--------|
+`;
+
+  for (const user of createdUsers) {
+    content += `| ${user.email} | ${user.password} | ${user.name} | ${user.role} | ✅ Created |\n`;
+  }
+
+  if (existingUsers.length > 0) {
+    content += `
+## ⚠️ Existing Users (Not Modified)
+
+| Email | Name | Role | Note |
+|-------|------|------|------|
+`;
+    for (const user of existingUsers) {
+      content += `| ${user.email} | ${user.name} | ${user.role} | ${user.note} |\n`;
+    }
+  }
+
+  content += `
+---
+
+## 🔑 Quick Login Reference
+
+### Owner Account (Full Access)
+- Email: owner@erp.com
+- Password: Owner@123456
+
+### Admin Accounts
+- Email: admin@erp.com / Password: Admin@123456
+- Email: manager@erp.com / Password: Manager@123456
+
+### User Accounts (Limited Access)
+- Email: user@erp.com / Password: User@123456
+- Email: accountant@erp.com / Password: Accountant@123456
+
+---
+
+## 📝 How to Run This Script
+
+From the backend directory:
+\`\`\`bash
+node src/setup/createAllUsers.js
+\`\`\`
+
+## ⚠️ Security Notice
+
+**Change these default passwords after first login in production environments!**
+
+---
+
+*This file was auto-generated by createAllUsers.js*
+`;
+
+  return content;
+}
+
+createAllUsers();

@@ -37,6 +37,24 @@ const adminSchema = new Schema({
     ref: 'Company',
     default: null,
   },
+  // Subscription/License Management
+  licenseExpiryDate: {
+    type: Date,
+    default: null,
+  },
+  subscriptionTier: {
+    type: String,
+    enum: ['free', 'basic', 'pro', 'enterprise'],
+    default: 'free',
+  },
+  maxUsers: {
+    type: Number,
+    default: 5,
+  },
+  isLicenseActive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 module.exports = mongoose.model('Admin', adminSchema);
