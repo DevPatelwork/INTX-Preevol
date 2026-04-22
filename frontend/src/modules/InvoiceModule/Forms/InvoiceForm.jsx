@@ -31,7 +31,7 @@ export default function InvoiceForm({ subTotal = 0, current = null }) {
   return <LoadInvoiceForm subTotal={subTotal} current={current} />;
 }
 
-function LoadInvoiceForm({ subTotal = 0, current = null }) {
+function LoadInvoiceForm({ subTotal = 0, current = null, form }) {
   const navigate = useNavigate();
   const translate = useLanguage();
   const { dateFormat } = useDate();
@@ -47,6 +47,10 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
   const [discountValue, setDiscountValue] = useState(0);
   const [currentYear, setCurrentYear] = useState(() => new Date().getFullYear());
   const [lastNumber, setLastNumber] = useState(() => last_invoice_number + 1);
+  
+  // Get form instance if not provided
+  const [formInstance] = Form.useForm();
+  const formRef = form || formInstance;
 
   const handelTaxChange = (value) => {
     setTaxRate(value / 100);
@@ -103,66 +107,67 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
 
   return (
     <>
+      {/* Invoice Type and Tax Type */}
       <Row gutter={[12, 0]}>
-        <Col className="gutter-row" span={8}>
+        <Col className="gutter-row" span={6}>
           <Form.Item
-            name="client"
-            label={translate('Client')}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            name="invoiceType"
+            label={translate('Invoice Type')}
+            initialValue="Sales Invoice"
+            rules={[{ required: true }]}
           >
-            <AutoCompleteAsync
-              entity={'client'}
-              displayLabels={['name']}
-              searchFields={'name'}
-              redirectLabel={'Add New Client'}
-              withRedirect
-              urlToRedirect={'/customer'}
+            <Select
+              options={[
+                { value: 'Sales Invoice', label: 'Sales Invoice' },
+                { value: 'Service Invoice', label: 'Service Invoice' },
+                { value: 'SEZ Sales Invoice', label: 'SEZ Sales Invoice' },
+                { value: 'SEZ Service Invoice', label: 'SEZ Service Invoice' },
+                { value: 'Export Sales Invoice', label: 'Export Sales Invoice' },
+                { value: 'Export Service Invoice', label: 'Export Service Invoice' },
+              ]}
             />
           </Form.Item>
         </Col>
-        <Col className="gutter-row" span={3}>
+        <Col className="gutter-row" span={6}>
+          <Form.Item
+            name="taxType"
+            label={translate('Tax Type')}
+            initialValue="Local State"
+            rules={[{ required: true }]}
+          >
+            <Select
+              options={[
+                { value: 'Local State', label: 'Local State (CGST + SGST)' },
+                { value: 'Inter-State', label: 'Inter-State (IGST)' },
+              ]}
+            />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={4}>
           <Form.Item
             label={translate('number')}
             name="number"
             initialValue={lastNumber}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true }]}
           >
             <InputNumber min={1} style={{ width: '100%' }} />
           </Form.Item>
         </Col>
-        <Col className="gutter-row" span={3}>
+        <Col className="gutter-row" span={4}>
           <Form.Item
             label={translate('year')}
             name="year"
             initialValue={currentYear}
-            rules={[
-              {
-                required: true,
-              },
-            ]}
+            rules={[{ required: true }]}
           >
             <InputNumber style={{ width: '100%' }} />
           </Form.Item>
         </Col>
-
-        <Col className="gutter-row" span={5}>
+        <Col className="gutter-row" span={4}>
           <Form.Item
             label={translate('status')}
             name="status"
-            rules={[
-              {
-                required: false,
-              },
-            ]}
-            initialValue={'draft'}
+            initialValue="draft"
           >
             <Select
               options={[
@@ -170,43 +175,87 @@ function LoadInvoiceForm({ subTotal = 0, current = null }) {
                 { value: 'pending', label: translate('Pending') },
                 { value: 'sent', label: translate('Sent') },
               ]}
-            ></Select>
+            />
           </Form.Item>
         </Col>
+      </Row>
 
+      {/* Date Row */}
+      <Row gutter={[12, 0]}>
         <Col className="gutter-row" span={8}>
           <Form.Item
             name="date"
             label={translate('Date')}
-            rules={[
-              {
-                required: true,
-                type: 'object',
-              },
-            ]}
+            rules={[{ required: true, type: 'object' }]}
             initialValue={dayjs()}
           >
             <DatePicker style={{ width: '100%' }} format={dateFormat} />
           </Form.Item>
         </Col>
-        <Col className="gutter-row" span={6}>
+        <Col className="gutter-row" span={8}>
           <Form.Item
             name="expiredDate"
             label={translate('Expire Date')}
-            rules={[
-              {
-                required: true,
-                type: 'object',
-              },
-            ]}
+            rules={[{ required: true, type: 'object' }]}
             initialValue={dayjs().add(30, 'days')}
           >
             <DatePicker style={{ width: '100%' }} format={dateFormat} />
           </Form.Item>
         </Col>
-        <Col className="gutter-row" span={10}>
+        <Col className="gutter-row" span={8}>
           <Form.Item label={translate('Note')} name="notes">
-            <Input />
+            <Input placeholder="Additional notes..." />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      {/* Receiver / Client Section */}
+      <Divider orientation="left">{translate('Bill To (Receiver)')}</Divider>
+      <Row gutter={[12, 0]}>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+            name="receiver"
+            label={translate('Client')}
+            rules={[{ required: true }]}
+          >
+            <AutoCompleteAsync
+              entity={'client'}
+              displayLabels={['name']}
+              searchFields={'name'}
+              outputValue="_id"
+              redirectLabel={'Add New Client'}
+              withRedirect
+              urlToRedirect={'/client'}
+              onSelect={(value, option) => {
+                // Auto-populate receiver details when client selected
+                if (option && option.data) {
+                  formRef.setFieldsValue({
+                    receiverName: option.data.name,
+                    receiverAddress: option.data.address,
+                  });
+                }
+              }}
+            />
+          </Form.Item>
+        </Col>
+        <Col className="gutter-row" span={12}>
+          <Form.Item
+            name="receiverName"
+            label={translate('Receiver Name')}
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Client/Company Name" />
+          </Form.Item>
+        </Col>
+      </Row>
+      <Row gutter={[12, 0]}>
+        <Col className="gutter-row" span={24}>
+          <Form.Item
+            name="receiverAddress"
+            label={translate('Receiver Address')}
+            rules={[{ required: true }]}
+          >
+            <Input.TextArea rows={2} placeholder="Complete billing address" />
           </Form.Item>
         </Col>
       </Row>

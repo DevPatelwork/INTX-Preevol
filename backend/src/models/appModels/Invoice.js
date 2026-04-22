@@ -11,12 +11,12 @@ const invoiceSchema = new mongoose.Schema({
   // Invoice Type and Tax Configuration
   invoiceType: {
     type: String,
-    required: true,
+    default: 'Sales Invoice',
     enum: ['Sales Invoice', 'Service Invoice', 'SEZ Sales Invoice', 'SEZ Service Invoice', 'Export Sales Invoice', 'Export Service Invoice'],
   },
   taxType: {
     type: String,
-    required: true,
+    default: 'Local State',
     enum: ['Local State', 'Inter-State'],
   },
   lutOption: {
@@ -89,15 +89,15 @@ const invoiceSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Client',
     autopopulate: true,
-    required: true,
+    required: false,
   },
   receiverName: {
     type: String,
-    required: true,
+    default: '',
   },
   receiverAddress: {
     type: String,
-    required: true,
+    default: '',
   },
   receiverGstin: {
     type: String,
@@ -182,7 +182,7 @@ const invoiceSchema = new mongoose.Schema({
       },
       rate: {
         type: Number,
-        required: true,
+        default: 0,
       },
       isService: {
         type: Boolean,
@@ -190,7 +190,7 @@ const invoiceSchema = new mongoose.Schema({
       },
       amount: {
         type: Number,
-        required: true,
+        default: 0,
       },
       discountPercent: {
         type: Number,
@@ -202,7 +202,7 @@ const invoiceSchema = new mongoose.Schema({
       },
       taxableValue: {
         type: Number,
-        required: true,
+        default: 0,
       },
       cgstRate: {
         type: Number,

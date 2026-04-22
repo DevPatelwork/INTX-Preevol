@@ -85,9 +85,15 @@ export default function ItemRow({ field, remove, current = null }) {
 
   useEffect(() => {
     const currentTotal = calculate.multiply(price, quantity);
+    const currentAmount = currentTotal; // Amount = Qty * Rate
 
     setTotal(currentTotal);
     setRowField('total', currentTotal);
+    
+    // Set required backend fields
+    setRowField('rate', price);           // Required: rate
+    setRowField('amount', currentAmount); // Required: amount
+    setRowField('taxableValue', currentAmount); // Required: taxableValue
   }, [price, quantity]);
 
   return (
@@ -115,11 +121,21 @@ export default function ItemRow({ field, remove, current = null }) {
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={7}>
+        {/* Hidden fields for required backend data */}
         <Form.Item name={[field.name, 'product']} hidden>
           <Input />
         </Form.Item>
+        <Form.Item name={[field.name, 'rate']} hidden>
+          <InputNumber />
+        </Form.Item>
+        <Form.Item name={[field.name, 'amount']} hidden>
+          <InputNumber />
+        </Form.Item>
+        <Form.Item name={[field.name, 'taxableValue']} hidden>
+          <InputNumber />
+        </Form.Item>
         <Form.Item name={[field.name, 'description']}>
-          <Input placeholder="description Name" />
+          <Input placeholder="Description" />
         </Form.Item>
       </Col>
       <Col className="gutter-row" span={3}>
