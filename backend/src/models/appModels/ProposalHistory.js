@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
   removed: { type: Boolean, default: false },
   enabled: { type: Boolean, default: true },
   legacyProposalId: { type: Number, sparse: true, index: true },
-  proposalNumber: { type: String, required: true, trim: true, index: true },
+  proposalNumber: { type: String, required: true, trim: true },
   companyId: { type: Number, default: null, index: true },
   partyId: { type: Number, default: null, index: true },
   productId: { type: Number, default: null, index: true },

@@ -1,8 +1,8 @@
 /* ERP Data Table Styles */
 .erpDataTableWrapper {
-  background: var(--surface_container_lowest);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border_light);
+  background: var(--surface-container);
+  border-radius: 18px;
+  border: 1px solid var(--outline);
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
@@ -51,6 +51,11 @@
   padding: 0;
 }
 
+.erpTableSearch.ant-input-affix-wrapper {
+  min-width: 240px;
+  max-width: 360px;
+}
+
 .erpTableContainer .ant-table {
   border-radius: 0;
   border: none;
@@ -62,9 +67,9 @@
 
 /* Form Styles */
 .erpFormWrapper {
-  background: var(--surface_container_lowest);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border_light);
+  background: var(--surface-container);
+  border-radius: 18px;
+  border: 1px solid var(--outline);
   box-shadow: var(--shadow-card);
   padding: 24px;
 }
@@ -87,7 +92,7 @@
   justify-content: flex-end;
   gap: 12px;
   padding-top: 20px;
-  border-top: 1px solid var(--border_light);
+  border-top: 1px solid var(--outline);
   margin-top: 24px;
 }
 
@@ -98,4 +103,34 @@
 
 .moneyInput input {
   text-align: right;
+}
+
+@media only screen and (max-width: 768px) {
+  .erpTableSearch.ant-input-affix-wrapper {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .erpDataTableWrapper .ant-page-header-heading {
+    align-items: stretch;
+  }
+
+  .erpDataTableWrapper .ant-page-header-heading-extra {
+    width: 100%;
+    margin-inline-start: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .erpFormWrapper {
+    padding: 16px;
+  }
+
+  .erpFormActions {
+    justify-content: stretch;
+  }
+
+  .erpFormActions .ant-btn {
+    width: 100%;
+  }
 }

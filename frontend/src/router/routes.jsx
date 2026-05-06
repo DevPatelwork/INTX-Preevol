@@ -54,6 +54,9 @@ const About = lazy(() => import('@/pages/About'));
 const SalesReport = lazy(() => import('@/pages/Reports/SalesReport'));
 const ServiceReport = lazy(() => import('@/pages/Reports/ServiceReport'));
 const StockReport = lazy(() => import('@/pages/Reports/StockReport'));
+const OperationsWorkspace = lazy(() => import('@/pages/OperationsWorkspace'));
+const EWayBill = lazy(() => import('@/pages/EWayBill'));
+const ProposalTechnical = lazy(() => import('@/pages/ProposalTechnical'));
 
 let routes = {
   expense: [],
@@ -333,6 +336,18 @@ let routes = {
     {
       path: '/stockreport',
       element: <StockReport />,
+    },
+    {
+      path: '/ewaybill',
+      element: <EWayBill />,
+    },
+    {
+      path: '/proposal-workspace',
+      element: <OperationsWorkspace type="proposal" />,
+    },
+    {
+      path: '/proposal-technical',
+      element: <ProposalTechnical />,
     },
 
     {

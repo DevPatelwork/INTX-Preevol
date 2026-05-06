@@ -19,7 +19,7 @@
 
   .appHeaderTitle {
     font-size: 18px !important;
-    margin-left: 50px;
+    margin-left: 0;
   }
 
   .appHeaderSearch {
@@ -59,7 +59,7 @@
 
   .appHeaderTitle {
     font-size: 16px !important;
-    margin-left: 45px;
+    margin-left: 0;
   }
 
   .appHeaderRight .ant-select {

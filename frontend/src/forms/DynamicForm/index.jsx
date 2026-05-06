@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react';
+import { useMemo } from 'react';
 import { DatePicker, Input, Form, Select, InputNumber, Switch, Tag } from 'antd';
 
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
@@ -9,30 +9,33 @@ import SelectAsync from '@/components/SelectAsync';
 
 import { countryList } from '@/utils/countryList';
 
-export default function DynamicForm({ fields, isUpdateForm = false }) {
+export default function DynamicForm({ fields, isUpdateForm = false, visibleFieldKeys = null }) {
   const form = Form.useFormInstance();
   const feedbackFieldKey = useMemo(
     () => Object.keys(fields).find((key) => fields[key].hasFeedback),
     [fields]
   );
   const feedback = Form.useWatch(feedbackFieldKey, form);
-
-  // Debug logging
-  console.log('DynamicForm - fields:', Object.keys(fields));
-  console.log('DynamicForm - isUpdateForm:', isUpdateForm);
-  console.log('DynamicForm - feedbackFieldKey:', feedbackFieldKey);
-  console.log('DynamicForm - feedback value:', feedback);
+  const allowedFieldKeys = useMemo(
+    () => (Array.isArray(visibleFieldKeys) ? new Set(visibleFieldKeys) : null),
+    [visibleFieldKeys]
+  );
 
   return (
     <div>
       {Object.keys(fields).map((key) => {
+        if (allowedFieldKeys && !allowedFieldKeys.has(key)) {
+          return null;
+        }
+
         const field = {
           ...fields[key],
           name: key,
           label: fields[key].label || key,
         };
 
-        if ((isUpdateForm && !field.disableForUpdate) || !field.disableForForm) {
+        const shouldRender = isUpdateForm ? !field.disableForUpdate : !field.disableForForm;
+        if (shouldRender) {
           if (field.hasFeedback) {
             return <FormElement key={key} field={field} />;
           } else if (field.feedback) {

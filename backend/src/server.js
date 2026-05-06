@@ -12,6 +12,9 @@ if (major < 20) {
 
 // import environmental variables from our variables.env file
 require('dotenv').config({ path: '.env' });
+if (process.env.NODE_ENV === 'production') {
+  require('dotenv').config({ path: '.env.production', override: true });
+}
 require('dotenv').config({ path: '.env.local' });
 
 mongoose.connect(process.env.DATABASE);

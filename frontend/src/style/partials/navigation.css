@@ -1,4 +1,4 @@
-/* Navigation Styles - Minimal */
+/* Navigation Styles - Modern Financial Dashboard */
 
 .navigation {
   position: sticky !important;
@@ -30,8 +30,9 @@
   cursor: pointer;
   padding: 12px;
   border-radius: var(--radius-xl);
-  background: var(--surface-container);
+  background: linear-gradient(145deg, var(--surface-container), var(--surface-container-high));
   border: 1px solid var(--outline);
+  transition: all 0.2s ease;
 }
 
 .logo:hover {
@@ -42,7 +43,7 @@
 .logoIcon {
   height: 40px;
   width: 40px;
-  border-radius: var(--radius-xl);
+  border-radius: 14px;
 }
 
 .logoBrandWrap {
@@ -70,7 +71,7 @@
   width: 100% !important;
   border-inline-end: none !important;
   background: transparent !important;
-  padding: 8px 12px 80px !important;
+  padding: 8px 12px 12px !important;
 }
 
 .navigationMenu .ant-menu-item,
@@ -85,8 +86,47 @@
   color: var(--on-surface-variant);
   background: transparent !important;
   padding-left: 16px !important;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, transform 0.2s ease;
   font-family: var(--font-body);
+}
+
+.navigationFooterCard {
+  margin: auto 14px 14px;
+  padding: 14px;
+  border: 1px solid var(--outline);
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(0, 80, 200, 0.14), rgba(134, 198, 64, 0.12), #ffffff);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navigationFooterIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.navigationFooterText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navigationFooterText strong {
+  color: var(--on-surface);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.navigationFooterText span {
+  color: var(--on-surface-muted);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .navigationMenu .ant-menu-item .ant-menu-title-content,
@@ -107,6 +147,7 @@
 .navigationMenu .ant-menu-submenu-title:hover {
   color: var(--on-surface) !important;
   background: var(--surface-container-high) !important;
+  transform: translateX(2px);
 }
 
 .navigationMenu .ant-menu-item:hover .anticon,
@@ -117,7 +158,7 @@
 /* Selected State */
 .navigationMenu .ant-menu-item-selected {
   color: var(--primary) !important;
-  background: var(--primary-container) !important;
+  background: linear-gradient(120deg, var(--primary-container), rgba(255, 255, 255, 0.9)) !important;
   font-weight: 600;
 }
 
@@ -195,6 +236,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.navigation-collapsed .navigationMenu .ant-menu-title-content {
+  display: none !important;
+}
+
+.navigation-collapsed .navigationMenu .ant-menu-submenu .ant-menu {
+  display: none !important;
 }
 
 .navigation-collapsed .navigationMenu .ant-menu-item .anticon,
@@ -327,6 +376,8 @@
     height: 100% !important;
     box-shadow: none;
     background: var(--surface) !important;
+    border-radius: 0;
+    border: none;
   }
   
   .mobile-sidebar-wraper {

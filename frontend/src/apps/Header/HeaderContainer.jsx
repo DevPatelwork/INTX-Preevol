@@ -91,11 +91,14 @@ export default function HeaderContent() {
     '/dashboard': 'Dashboard Overview',
     '/invoice': translate('invoices'),
     '/quotation': 'Quotation',
+    '/proposal-workspace': 'Proposal Workspace',
+    '/proposal-technical': 'Proposal Technical Form',
     '/proformainvoice': 'Proforma Invoice',
     '/serviceinvoice': 'Service Invoice',
     '/proformaserviceinvoice': 'Proforma Service',
     '/proposalhistory': 'Report',
     '/customer': translate('customers'),
+    '/ewaybill': 'E-Way Bill Workspace',
     '/vendor': 'Vendor',
     '/workorder': 'Work Order',
     '/purchaseorder': 'Purchase Order',
@@ -186,6 +189,10 @@ export default function HeaderContent() {
   return (
     <Header className="appHeader">
       <div className="appHeaderLeft">
+        <div className="appHeaderHeading">
+          <h2 className="appHeaderTitle">{pageTitle}</h2>
+          <p className="appHeaderSubtitle">Operational workspace</p>
+        </div>
         <Input
           className="appHeaderSearch"
           placeholder="Search POs or Invoices..."

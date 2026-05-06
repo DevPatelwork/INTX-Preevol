@@ -1,48 +1,45 @@
 /* Architectural Ledger Design System: Light & Dark Mode Support */
-/* Original Blue Theme with Day/Night Mode Toggle */
-
-/* Import distinctive fonts - Chakra Petch for headers, DM Sans for body */
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+/* Preevol brand palette derived from sidebar logo */
 
 /* === LIGHT MODE (Default) - Original Blue Theme === */
 :root,
 [data-theme='light'] {
   /* Surface Colors */
-  --surface: #f7f9fb;
-  --surface-low: #f2f4f6;
+  --surface: #f5f7fc;
+  --surface-low: #edf1f8;
   --surface-container: #ffffff;
-  --surface-container-high: #eceef0;
-  --surface-container-higher: #e0e3e5;
-  --surface-container-low: #f2f4f6;
+  --surface-container-high: #f8faff;
+  --surface-container-higher: #ecf1fb;
+  --surface-container-low: #eef3fb;
   --surface-bright: #ffffff;
   
   /* Text Colors */
-  --on-surface: #191c1e;
-  --on-surface-variant: #434655;
-  --on-surface-muted: #6b7280;
-  --on-surface-subtle: #9ca3af;
-  --inverse-surface: #2d3133;
+  --on-surface: #0a143c;
+  --on-surface-variant: #2e3a61;
+  --on-surface-muted: #667196;
+  --on-surface-subtle: #95a0bf;
+  --inverse-surface: #1e2642;
   --inverse-on-surface: #eff1f3;
   
   /* Primary Brand Colors - Original Blue */
-  --primary: #004ac6;
-  --primary-hover: #2563eb;
-  --primary-active: #1e40af;
-  --primary-container: #dbe6ff;
-  --primary-container-high: #c8ddff;
+  --primary: #0050c8;
+  --primary-hover: #1b66dd;
+  --primary-active: #0042a7;
+  --primary-container: #dceaff;
+  --primary-container-high: #c9ddff;
   --on-primary: #ffffff;
-  --inverse-primary: #b4c5ff;
+  --inverse-primary: #b8cfff;
   
   /* Secondary & Accent Colors */
-  --secondary: #0d9488;
-  --secondary-hover: #14b8a6;
-  --secondary-container: #ccfbf1;
-  --on-secondary: #134e4a;
+  --secondary: #86c640;
+  --secondary-hover: #9bd451;
+  --secondary-container: #eef8de;
+  --on-secondary: #304a10;
   
   /* Tertiary: Electric Indigo */
-  --tertiary: #6366f1;
-  --tertiary-container: #e0e7ff;
-  --on-tertiary: #3730a3;
+  --tertiary: #f5c84c;
+  --tertiary-container: #fff3d7;
+  --on-tertiary: #5d4611;
   
   /* Semantic Colors */
   --success: #10b981;
@@ -55,19 +52,19 @@
   --info-light: #dbeafe;
   
   /* Borders & Dividers */
-  --outline: #e5e7eb;
-  --outline-variant: #d1d5db;
+  --outline: #d9e1f0;
+  --outline-variant: #c3cee3;
   --outline-subtle: rgba(0, 0, 0, 0.06);
   --border-light: rgba(0, 0, 0, 0.06);
-  --border-focus: rgba(0, 74, 198, 0.5);
+  --border-focus: rgba(0, 80, 200, 0.5);
   
   /* Shadows - Minimal, soft */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 4px 8px -2px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 8px 16px -4px rgba(0, 0, 0, 0.08);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 4px 14px rgba(24, 36, 74, 0.06);
+  --shadow-md: 0 14px 30px rgba(24, 36, 74, 0.1);
+  --shadow-lg: 0 22px 44px rgba(24, 36, 74, 0.12);
+  --shadow-xl: 0 32px 64px rgba(24, 36, 74, 0.16);
+  --shadow-card: 0 10px 24px rgba(24, 36, 74, 0.09);
+  --shadow-elevated: 0 26px 48px rgba(24, 36, 74, 0.12);
   --shadow-glow-primary: none;
   --shadow-glow-secondary: none;
   
@@ -197,10 +194,10 @@
   --space-24: 6rem;
   
   /* Border Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
   --radius-full: 9999px;
   
   /* Typography */
@@ -257,11 +254,12 @@
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
   border: 1px solid var(--outline);
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .card-elevated:hover {
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
   border-color: var(--outline-variant);
 }
 

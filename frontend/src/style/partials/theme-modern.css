@@ -1,0 +1,135 @@
+/* === MODERN FINANCIAL DASHBOARD THEME === */
+/* Clean, minimal design with emerald green accents inspired by modern fintech UI */
+
+:root,
+[data-theme='light'] {
+  /* === SURFACE COLORS - Clean whites and light grays === */
+  --surface: #f8fafc;
+  --surface-low: #f1f5f9;
+  --surface-container: #ffffff;
+  --surface-container-high: #f8fafc;
+  --surface-container-higher: #f1f5f9;
+  --surface-container-low: #fcfcfc;
+  --surface-bright: #ffffff;
+  
+  /* === TEXT COLORS - Slate gray scale === */
+  --on-surface: #0f172a;
+  --on-surface-variant: #334155;
+  --on-surface-muted: #64748b;
+  --on-surface-subtle: #94a3b8;
+  --inverse-surface: #1e293b;
+  --inverse-on-surface: #f8fafc;
+  
+  /* === PRIMARY - Emerald Green (from reference images) === */
+  --primary: #10b981;
+  --primary-hover: #34d399;
+  --primary-active: #059669;
+  --primary-container: #d1fae5;
+  --primary-container-high: #a7f3d0;
+  --on-primary: #ffffff;
+  --inverse-primary: #6ee7b7;
+  
+  /* === SECONDARY - Soft Blue === */
+  --secondary: #3b82f6;
+  --secondary-hover: #60a5fa;
+  --secondary-container: #dbeafe;
+  --on-secondary: #1e40af;
+  
+  /* === TERTIARY - Warm Orange === */
+  --tertiary: #f97316;
+  --tertiary-container: #ffedd5;
+  --on-tertiary: #9a3412;
+  
+  /* === SEMANTIC COLORS === */
+  --success: #22c55e;
+  --success-light: #dcfce7;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --error: #ef4444;
+  --error-light: #fee2e2;
+  --info: #0ea5e9;
+  --info-light: #e0f2fe;
+  
+  /* === BORDERS === */
+  --outline: #e2e8f0;
+  --outline-variant: #cbd5e1;
+  --outline-subtle: rgba(148, 163, 184, 0.2);
+  --border-light: rgba(226, 232, 240, 0.6);
+  --border-focus: rgba(16, 185, 129, 0.4);
+  
+  /* === SHADOWS - Soft, modern elevation === */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.06);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.1);
+  --shadow-glow-primary: 0 0 20px rgba(16, 185, 129, 0.3);
+  
+  /* === TYPOGRAPHY === */
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* === SPACING === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  
+  /* === RADIUS === */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+}
+
+/* === DARK MODE - Deep slate with emerald accents === */
+[data-theme='dark'] {
+  --surface: #0f172a;
+  --surface-low: #1e293b;
+  --surface-container: #1e293b;
+  --surface-container-high: #334155;
+  --surface-container-higher: #475569;
+  --surface-container-low: #0f172a;
+  --surface-bright: #334155;
+  
+  --on-surface: #f8fafc;
+  --on-surface-variant: #cbd5e1;
+  --on-surface-muted: #94a3b8;
+  --on-surface-subtle: #64748b;
+  --inverse-surface: #f8fafc;
+  --inverse-on-surface: #0f172a;
+  
+  --primary: #34d399;
+  --primary-hover: #6ee7b7;
+  --primary-active: #10b981;
+  --primary-container: rgba(52, 211, 153, 0.15);
+  --primary-container-high: rgba(52, 211, 153, 0.25);
+  --on-primary: #064e3b;
+  --inverse-primary: #10b981;
+  
+  --secondary: #60a5fa;
+  --secondary-hover: #93c5fd;
+  --secondary-container: rgba(96, 165, 250, 0.15);
+  
+  --tertiary: #fb923c;
+  --tertiary-container: rgba(251, 146, 60, 0.15);
+  
+  --outline: #334155;
+  --outline-variant: #475569;
+  --outline-subtle: rgba(71, 85, 105, 0.5);
+  --border-light: rgba(51, 65, 85, 0.6);
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.5);
+}

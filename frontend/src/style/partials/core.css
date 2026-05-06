@@ -19,8 +19,13 @@
   min-height: 100px;
   overflow: hidden;
   border: 1px solid var(--outline);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whiteBox:hover {
+  transform: translateY(-1px);
 }
 
 .shadow {
@@ -96,44 +101,89 @@
 
 .layoutPadding {
   position: relative;
-  padding: 24px 20px 24px 12px;
+  padding: 16px;
 }
 
 .dashboardSpacing {
-  padding: 20px 20px 30px 12px;
+  padding: 16px;
   margin: 0 auto;
 }
 
 .erp-panel-content {
-  margin: 16px auto;
-  max-width: 1400px;
+  margin: 0 auto;
+  max-width: 1600px;
   min-height: 600px;
-  padding: 0 20px 0 12px;
+  padding: 0;
+  border-radius: 20px;
 }
 
 .dashboardV2 {
   padding-bottom: 24px;
 }
 
-/* === DASHBOARD CARDS === */
+/* === DASHBOARD CARDS - Modern Clean Style === */
 .dashboardCard {
   background: var(--surface-container);
   border: 1px solid var(--outline);
-  border-radius: var(--radius-xl);
-  padding: 20px;
+  border-radius: var(--radius-lg);
+  padding: 24px;
   box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
 }
 
 .dashboardCard:hover {
   box-shadow: var(--shadow-md);
   border-color: var(--outline-variant);
+  transform: translateY(-1px);
+}
+
+/* === STAT CARDS - Large numbers like reference === */
+.statCard {
+  background: var(--surface-container);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.statCardValue {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--on-surface);
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.statCardLabel {
+  font-size: 14px;
+  color: var(--on-surface-muted);
+  font-weight: 500;
+  margin: 0;
+}
+
+.statCardChange {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.statCardChange.positive {
+  color: var(--success);
+}
+
+.statCardChange.negative {
+  color: var(--error);
 }
 
 /* === SUMMARY CARDS === */
 .summaryCard h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1;
   color: var(--on-surface);
   font-weight: 700;
@@ -146,7 +196,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: var(--radius-xl);
+  border-radius: 12px;
   font-size: 24px;
   margin-bottom: 16px;
   transition: all 0.3s ease;
@@ -233,6 +283,7 @@
 /* === CHART COMPONENTS === */
 .chartCard {
   min-height: 320px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 250, 255, 0.94));
 }
 
 .chartHeader {
@@ -294,7 +345,7 @@
   margin-top: 20px;
   position: relative;
   border: 1px solid var(--outline);
-  border-radius: var(--radius-xl);
+  border-radius: 16px;
   padding: 10px 10px 0;
   background: var(--surface-container-high);
 }
@@ -352,7 +403,7 @@
   top: 16px;
   right: 16px;
   min-width: 190px;
-  border-radius: var(--radius-xl);
+  border-radius: 16px;
   border: 1px solid var(--outline);
   background: var(--surface-container-high);
   box-shadow: var(--shadow-md);
@@ -448,7 +499,7 @@
 }
 
 .quickActionsGrid .ant-btn {
-  border-radius: var(--radius-xl);
+  border-radius: 12px;
   border: 1px solid var(--outline);
   color: var(--on-surface-variant);
   font-weight: 500;
@@ -459,6 +510,7 @@
 .quickActionsGrid .ant-btn:hover {
   border-color: var(--primary);
   color: var(--primary);
+  transform: translateY(-1px);
 }
 
 .mrgTop16 {
@@ -506,7 +558,7 @@
 
 /* === STATUS BADGE === */
 .statusBadge.ant-tag {
-  border-radius: var(--radius-xl);
+  border-radius: 999px;
   border: none;
   background: var(--primary-container);
   color: var(--primary);

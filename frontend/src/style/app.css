@@ -1,4 +1,7 @@
+@import "tailwindcss";
+
 @import './partials/rest.css';
+@import './partials/theme-modern.css';
 @import './partials/designSystem.css';
 @import './partials/customAntd.css';
 @import './partials/layout.css';

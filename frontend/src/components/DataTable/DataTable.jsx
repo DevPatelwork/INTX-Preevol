@@ -8,8 +8,9 @@ import {
   RedoOutlined,
   ArrowRightOutlined,
   ArrowLeftOutlined,
+  SearchOutlined,
 } from '@ant-design/icons';
-import { Dropdown, Table, Button, Input } from 'antd';
+import { Dropdown, Table, Button, Input, Space } from 'antd';
 import { PageHeader } from '@ant-design/pro-layout';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -149,12 +150,7 @@ export default function DataTable({ config, extra = [] }) {
 
   const { result: listResult, isLoading: listIsLoading } = useSelector(selectListItems);
 
-  // Debug logging
-  console.log('DataTable Debug:', { entity, listResult, isLoading: listIsLoading });
-
   const { pagination, items: dataSource } = listResult || { pagination: {}, items: [] };
-
-  console.log('DataTable DataSource:', { pagination, dataSource, dataSourceLength: dataSource?.length });
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -178,7 +174,8 @@ export default function DataTable({ config, extra = [] }) {
           // Skip internal fields and null/undefined values
           if (key.startsWith('_') || val == null) return false;
           // Convert value to string and check if it includes search term
-          const stringVal = String(val).toLowerCase();
+          const stringVal =
+            typeof val === 'object' ? JSON.stringify(val).toLowerCase() : String(val).toLowerCase();
           return stringVal.includes(searchLower);
         });
       })
@@ -197,7 +194,7 @@ export default function DataTable({ config, extra = [] }) {
   }, []);
 
   return (
-    <>
+    <div className="erpDataTableWrapper">
       <PageHeader
         onBack={() => window.history.back()}
         backIcon={<ArrowLeftOutlined />}
@@ -210,27 +207,36 @@ export default function DataTable({ config, extra = [] }) {
             onChange={filterTable}
             placeholder={translate('search')}
             allowClear
+            prefix={<SearchOutlined />}
+            className="erpTableSearch"
           />,
-          <Button onClick={handelDataTableLoad} key={`${uniqueId()}`} icon={<RedoOutlined />}>
-            {translate('Refresh')}
-          </Button>,
-
-          <AddNewItem key={`${uniqueId()}`} config={config} />,
+          <Space key="table-actions" size={8}>
+            <Button onClick={handelDataTableLoad} key={`${uniqueId()}`} icon={<RedoOutlined />}>
+              {translate('Refresh')}
+            </Button>
+            <AddNewItem key={`${uniqueId()}`} config={config} />
+          </Space>,
         ]}
         style={{
-          padding: '20px 0px',
+          padding: '12px 16px',
         }}
       ></PageHeader>
-
-      <Table
-        columns={dataTableColumns}
-        rowKey={(item) => item._id}
-        dataSource={filteredDataSource}
-        pagination={pagination}
-        loading={listIsLoading}
-        onChange={handelDataTableLoad}
-        scroll={{ x: true }}
-      />
-    </>
+      <div className="erpTableContainer">
+        <Table
+          columns={dataTableColumns}
+          rowKey={(item) => item._id}
+          dataSource={filteredDataSource}
+          pagination={{
+            ...pagination,
+            showSizeChanger: true,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
+          }}
+          loading={listIsLoading}
+          onChange={handelDataTableLoad}
+          scroll={{ x: true }}
+          size="middle"
+        />
+      </div>
+    </div>
   );
 }
