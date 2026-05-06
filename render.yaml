@@ -11,6 +11,8 @@ services:
         value: 20.9.0
       - key: NODE_ENV
         value: production
+      - key: OPENSSL_CONF
+        value: /dev/null
       - key: DATABASE
         sync: false
       - key: JWT_SECRET
@@ -37,8 +39,8 @@ services:
       - key: NODE_VERSION
         value: 20.9.0
       - key: VITE_BACKEND_SERVER
-        value: https://intx-preevol-backend.onrender.com/
+        value: https://intx-preevol-backend.onrender.com
       - key: VITE_FILE_BASE_URL
-        value: https://intx-preevol-backend.onrender.com/
+        value: https://intx-preevol-backend.onrender.com
       - key: VITE_WEBSITE_URL
-        value: https://intx-preevol-frontend.onrender.com/
+        value: https://intx-preevol-frontend.onrender.com

@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 require('dotenv').config({ path: '.env.local' });
 
-mongoose.connect(process.env.DATABASE);
+mongoose.connect(process.env.DATABASE || process.env.DATABASE_URL);
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
